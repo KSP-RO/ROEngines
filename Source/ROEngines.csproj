@@ -83,4 +83,8 @@
   <ProjectExtensions>
     <VisualStudio AllowExistingFolder="true" />
   </ProjectExtensions>
+  <PropertyGroup>
+    <PostBuildEvent>cd $(TargetPath)
+del System.Core.dll</PostBuildEvent>
+  </PropertyGroup>
 </Project>
