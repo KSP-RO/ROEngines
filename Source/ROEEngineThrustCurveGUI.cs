@@ -62,6 +62,7 @@ namespace ROEngines
         public override void OnLoad(ConfigNode node)
         {
             base.OnLoad(node);
+            /*
             if (node.HasNode("currentCurve"))
             {
                 ROELog.debug("currentCurve: " + node.GetFloatCurve("currentCurve"));
@@ -69,6 +70,7 @@ namespace ROEngines
                 currentCurve = node.GetFloatCurve("currentCurve");
                 thrustCurveName = node.GetStringValue("thrustCurveName");
             }
+            */
         }
 
         public override void OnStart(StartState state)
@@ -83,7 +85,11 @@ namespace ROEngines
 
         public void Start()
         {
-            updateEngineCurve();
+            if (!HighLogic.LoadedSceneIsEditor)
+            {
+                StartCoroutine(RunLateStart());
+            }
+            //updateEngineCurve();
         }
 
         public override void OnSave(ConfigNode node)
@@ -95,8 +101,8 @@ namespace ROEngines
 
         private IEnumerator RunLateStart()
         {
-            initialize();
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(1.0f);
+            updateEngineCurve();
         }
 
         /// <summary>
