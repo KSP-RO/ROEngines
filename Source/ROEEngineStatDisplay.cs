@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
+using RealFuels;
 
 namespace ROEngines
 {
@@ -54,13 +55,13 @@ namespace ROEngines
 
         private void updateStats()
         {
-            ModuleEngines[] engines = part.GetComponents<ModuleEngines>();
+            ModuleEnginesRF[] engines = part.GetComponents<ModuleEnginesRF>();
             if (engines == null || engines.Length < 1 || engineModuleIndex < 0 || engineModuleIndex >= engines.Length)
             {
                 //no valid engine module; set UI values to default/0, and disable UI fields
                 return;
             }
-            ModuleEngines engine = engines[engineModuleIndex];
+            ModuleEnginesRF engine = engines[engineModuleIndex];
 
             //derivation of fuel mass flow from isp and thrust, from expression of thrust from ISP (t = g * i * m)
             //t = thrust(kn), g = g0(m/s), i = isp(s), m = massflowrate(t/s)
@@ -97,7 +98,7 @@ namespace ROEngines
 
         //TODO should be expanded to search the entire vessel during flight (respecting stage/flow setup)
         //TODO should be expanded to search the entire ShipConstruct in the editor, respecting stage flow
-        private float getEnginePropellantMass(ModuleEngines engine)
+        private float getEnginePropellantMass(ModuleEnginesRF engine)
         {
             float fuelMass = 0;
             if (engine.propellants != null && engine.propellants.Count > 0)

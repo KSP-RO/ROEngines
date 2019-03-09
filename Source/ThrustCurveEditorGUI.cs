@@ -175,6 +175,7 @@ namespace ROEngines
                     loadPresetCurve(presets[i]);
                 }
             }
+            GUILayout.FlexibleSpace();
             if (GUILayout.Button("Close"))
             {
                 presetWindowOpen = false;
