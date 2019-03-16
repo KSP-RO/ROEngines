@@ -9,12 +9,12 @@ namespace ROEngines
     public class ThrustCurveEditorGUI : MonoBehaviour
     {
         private static int graphWidth = 640;
-        private static int graphHeight = 480;
-        private static int scrollHeight = 200;
+        private static int graphHeight = 250;
+        private static int scrollHeight = 480;
         private static int margin = 20;
 
-        //private static int presetWidth = 200;
-        //private static int presetHeight = scrollHeight + graphHeight;
+        private static int presetWidth = 200;
+        private static int presetHeight = scrollHeight + graphHeight;
 
         private static ThrustCurveEditorGUI activeGUI;
 
@@ -23,19 +23,19 @@ namespace ROEngines
         private static FloatCurve curve;
         private static Texture2D texture;        
         private static Rect windowRect = new Rect(Screen.width - 900, 40, graphWidth + margin, graphHeight + scrollHeight + margin);
-        //private static Vector2 scrollPos;
+        private static Vector2 scrollPos;
         private static List<FloatCurveEntry> curveData = new List<FloatCurveEntry>();
         private static ThrustCurvePreset[] presets;
         private static string presetName;
 
-        //private static Rect presetWindowRect = new Rect(Screen.width - 900 - presetWidth - margin, 40, presetWidth + margin, presetHeight + margin);
-        //private static bool presetWindowOpen = false;
+        private static Rect presetWindowRect = new Rect(Screen.width - 900 - presetWidth - margin, 40, presetWidth + margin, presetHeight + margin);
+        private static bool presetWindowOpen = false;
 
         public static void openGUI(ROEEngineThrustCurveGUI srbModule, string preset, FloatCurve inputCurve)
         {
             module = srbModule;
             id = module.GetInstanceID();
-            ROELog.debug("ThrustCurveEditor-input curve: " + curve + "\n" + ROEUtil.printFloatCurve(curve));
+            MonoBehaviour.print("ThrustCurveEditor-input curve: " + curve + "\n" + ROEUtil.printFloatCurve(curve));
             presetName = preset;
             setupCurveData(inputCurve);
             texture = new Texture2D(graphWidth, graphHeight);
@@ -62,7 +62,7 @@ namespace ROEngines
 
         public static void closeGUI()
         {
-            //sortKeys(true);
+            sortKeys(true);
             updateFloatCurve();
             module.thrustCurveGuiClosed(presetName, curve);
             //module.closeGui(curve, presetName);
@@ -76,13 +76,11 @@ namespace ROEngines
 
         public static void updateGUI()
         {
-            windowRect = GUI.Window(id, windowRect, updateGraphWindow, "SRB Thrust Curve Chooser");
-            /*
+            windowRect = GUI.Window(id, windowRect, updateGraphWindow, "SRB Thrust Curve Editor");
             if (presetWindowOpen)
             {
                 presetWindowRect = GUI.Window(id + 1, presetWindowRect, updatePresetWindow, "Curve Presets");
             }
-            */
         }
 
         private static void updateGraphWindow(int id)
@@ -90,7 +88,6 @@ namespace ROEngines
             GUILayout.BeginVertical();
             GUILayout.Box(texture);
             GUILayout.BeginHorizontal();
-            /*
             if (GUILayout.Button("Load Preset", GUILayout.Width(200)))
             {
                 presetWindowOpen = true;
@@ -99,18 +96,7 @@ namespace ROEngines
             {
                 clearData();
             }
-            */
-
-            int len = presets.Length;
-            for (int i = 0; i < len; i++)
-            {
-                if (GUILayout.Button(presets[i].name))
-                {
-                    loadPresetCurve(presets[i]);
-                }
-            }
             GUILayout.EndHorizontal();
-            /*
             GUILayout.BeginHorizontal();
             GUILayout.Label("Key", GUILayout.Width(100));
             GUILayout.Label("Value", GUILayout.Width(100));
@@ -155,14 +141,12 @@ namespace ROEngines
             {
                 sortKeys(false);
             }
-            */
             if (GUILayout.Button("Close GUI"))
             {
                 closeGUI();
             }
             GUILayout.EndVertical();
             GUI.DragWindow();
-            /*
             if (removeIndex >= 0 && len > 1)//do not remove last key
             {
                 curveData.RemoveAt(removeIndex);
@@ -178,10 +162,8 @@ namespace ROEngines
                 presetName = "";
                 updateGraphTexture();
             }
-            */
         }
 
-        /*
         private static void updatePresetWindow(int id)
         {
             GUILayout.BeginVertical();
@@ -201,7 +183,6 @@ namespace ROEngines
             GUILayout.EndVertical();
             GUI.DragWindow();
         }
-        */
 
         private static void loadPresetCurve(ThrustCurvePreset preset)
         {   
@@ -209,15 +190,13 @@ namespace ROEngines
             updateGraphTexture();
             presetName = preset.name;
         }
-        /*
+        
         private static void clearData()
         {
             curveData.Clear();
             updateGraphTexture();
         }
-        */
 
-        /*
         private static void sortKeys(bool descend)
         {
             if (descend)//0->1
@@ -230,7 +209,6 @@ namespace ROEngines
             }            
         }
 
-        */
         private static void updateFloatCurve()
         {
             curve = new FloatCurve();

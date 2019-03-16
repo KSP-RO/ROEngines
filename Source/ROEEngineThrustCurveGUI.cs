@@ -76,19 +76,15 @@ namespace ROEngines
         public override void OnStart(StartState state)
         {
             base.OnStart(state);
-            if (!HighLogic.LoadedSceneIsEditor)
-            {
-                StartCoroutine(RunLateStart());
-            }
             initialize();
         }
 
         public void Start()
         {
-            if (!HighLogic.LoadedSceneIsEditor)
-            {
-                StartCoroutine(RunLateStart());
-            }
+            //if (!HighLogic.LoadedSceneIsEditor)
+            //{
+            //    StartCoroutine(RunLateStart());
+            //}
             //updateEngineCurve();
         }
 
@@ -99,9 +95,17 @@ namespace ROEngines
             //ROELog.debug("savedCurve stored: " + savedCurve.ToStringSingleLine());
         }
 
+        public override void OnInitialize()
+        {
+            if (!HighLogic.LoadedSceneIsEditor)
+                {
+                    StartCoroutine(RunLateStart());
+                }
+        }
+
         private IEnumerator RunLateStart()
         {
-            yield return new WaitForSeconds(1.0f);
+            yield return null;
             updateEngineCurve();
         }
 
@@ -123,6 +127,7 @@ namespace ROEngines
                     //load currentCurve from customCurveData
                     currentCurve = new FloatCurve();
                     currentCurve.loadSingleLine(customCurveData);
+                    savedCurve = currentCurve.ToStringSingleLine();
                     thrustCurveName = part.partInfo.title + " Custom";
                 }
                 else if (usePresetCurve && !string.IsNullOrEmpty(presetCurveName))
@@ -142,6 +147,7 @@ namespace ROEngines
                     thrustCurveName = part.partInfo.title + " Curve";
                     currentCurve = new FloatCurve();
                     currentCurve.loadSingleLine(pm.thrustCurve.ToStringSingleLine());
+                    savedCurve = currentCurve.ToStringSingleLine();
                 }
             }
             updateEngineCurve();
@@ -152,15 +158,19 @@ namespace ROEngines
             //update the persistent curve data from
             currentCurve = curve;
             presetCurveName = preset;
-            usePresetCurve = !string.IsNullOrEmpty(presetCurveName);
             thrustCurveName = presetCurveName;
             if (!usePresetCurve)
             {
                 customCurveData = currentCurve.ToStringSingleLine();
                 thrustCurveName = part.partInfo.title + " Custom";
+                savedCurve = currentCurve.ToStringSingleLine();
+                updateEngineCurve();
             }
-            ROELog.debug("Updating engine thrust curve data.  Use preset: " + usePresetCurve);
-            updateEngineCurve();
+            else
+            {
+                usePresetCurve = true;
+                loadPresetCurve(preset);
+            }            
         }
 
         /// <summary>
@@ -176,14 +186,16 @@ namespace ROEngines
                 return;
             }
 
-            else
+            foreach (ModuleEnginesRF eng in part.FindModulesImplementing<ModuleEnginesRF>())
             {
-                foreach (ModuleEnginesRF eng in part.FindModulesImplementing<ModuleEnginesRF>())
-                {
-                    ROELog.debug("Engine curve set to: " + thrustCurveName);
-                    eng.thrustCurve = currentCurve;
-                    ROELog.debug("New Curve: " + eng.thrustCurve.ToStringSingleLine());
-                }
+                ROELog.debug("currentCurve: " + currentCurve.ToStringSingleLine());
+                ROELog.debug("savedCurve: " + savedCurve);
+                ROELog.debug("Engine curve set to: " + thrustCurveName);
+                currentCurve = new FloatCurve();
+                currentCurve.loadSingleLine(savedCurve);
+                eng.thrustCurve = currentCurve;
+                ROELog.debug("savedCurve: " + savedCurve);
+                ROELog.debug("New Curve: " + eng.thrustCurve.ToStringSingleLine());
             }
         }
 
@@ -196,9 +208,11 @@ namespace ROEngines
             {
                 if (presetNodes[i].GetStringValue("name") == presetName)
                 {
+                    ROELog.debug("Updating engine thrust curve data.  Use preset: " + usePresetCurve);
                     preset = new ThrustCurvePreset(presetNodes[i]);
                     currentCurve = preset.curve;
                     thrustCurveName = preset.name;
+                    savedCurve = currentCurve.ToStringSingleLine();
                     updateEngineCurve();
                     break;
                 }
