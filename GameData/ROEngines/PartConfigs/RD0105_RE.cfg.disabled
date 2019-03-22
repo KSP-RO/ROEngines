@@ -68,7 +68,7 @@ PART
 	
 	{
 	    name = ModuleGimbal
-	    gimbalTransformName = gimbal
+	    gimbalTransformName = vernierGimbal
 		gimbalRange = 7
  	    gimbalResponseSpeed = 16
  	    useGimbalResponseSpeed = true
