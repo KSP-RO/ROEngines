@@ -61,7 +61,7 @@ PART
 	
 	MODULE
 	{
-		name = ModuleEnginesFX
+		name = ModuleEnginesRF
 		thrustVectorTransformName = thrustTransform
 	}
 	
