@@ -345,3 +345,6 @@ healthchecksdb
 MigrationBackup/
 
 *.zip
+
+# Blender backup files
+*.blend1
