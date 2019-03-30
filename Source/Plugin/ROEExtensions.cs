@@ -225,6 +225,34 @@ namespace ROEngines
             return GetIntValue(node, name, 0);
         }
 
+        /// <summary>
+        /// Performs the input delegate onto the input part module and any modules found in symmetry counerparts.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="module"></param>
+        /// <param name="action"></param>
+        public static void actionWithSymmetry<T>(this T module, Action<T> action) where T : PartModule
+        {
+            action(module);
+            forEachSymmetryCounterpart(module, action);
+        }
+
+        /// <summary>
+        /// Performs the input delegate onto any modules found in symmetry counerparts. (does not effect this.module)
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="module"></param>
+        /// <param name="action"></param>
+        public static void forEachSymmetryCounterpart<T>(this T module, Action<T> action) where T : PartModule
+        {
+            int index = module.part.Modules.IndexOf(module);
+            int len = module.part.symmetryCounterparts.Count;
+            for (int i = 0; i < len; i++)
+            {
+                action((T)module.part.symmetryCounterparts[i].Modules[index]);
+            }
+        }
+
         #endregion
     }
 }

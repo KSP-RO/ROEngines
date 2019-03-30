@@ -69,6 +69,8 @@
   <ItemGroup>
     <Compile Include="AnimState.cs" />
     <Compile Include="AnimationModule.cs" />
+    <Compile Include="ModelData.cs" />
+    <Compile Include="ModelModule.cs" />
     <Compile Include="ROELog.cs" />
     <Compile Include="ROEExtensions.cs" />
     <Compile Include="ROEUtil.cs" />
@@ -78,6 +80,7 @@
     <Compile Include="ROEDeployableEngine.cs" />
     <Compile Include="ROEStockInterop.cs" />
     <None Include="ThrustCurveEditorGUI - Original.cs.disabled" />
+    <Compile Include="ROEProcSRB.cs" />
     <Compile Include="ThrustCurveEditorGUI.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSHARP.Targets" />
