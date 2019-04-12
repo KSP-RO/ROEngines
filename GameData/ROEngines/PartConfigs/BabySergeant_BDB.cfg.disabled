@@ -6,7 +6,7 @@
 PART
 {
 	module = Part
-	name = ROE-BabySergeant-BDB
+	name = ROE-BabySergeant
 	author = CobaltWolf, Pap
 	
 	category = Engine
@@ -98,7 +98,7 @@ PART
 PART
 {
 	module = Part
-	name = ROE-BabySergeantX3-BDB
+	name = ROE-BabySergeantX3
 	author = CobaltWolf, Pap
 	
 	category = Engine
@@ -172,7 +172,7 @@ PART
 	}
 
 }
-@PART[ROE-BabySergeantX3-BDB]:AFTER[RealismOverhaulEngines]
+@PART[ROE-BabySergeantX3]:AFTER[RealismOverhaulEngines]
 {
 	@title = Baby Sergeant 3x Cluster
 	@description = Middle cluster in Sergeant Cluster used on Juno I and II launch vehicles and on the Jupiter-C test rocket.
@@ -185,7 +185,7 @@ PART
 PART
 {
 	module = Part
-	name = ROE-BabySergeantX11-BDB
+	name = ROE-BabySergeantX11
 	author = CobaltWolf, Pap
 	
 	category = Engine
@@ -269,7 +269,7 @@ PART
 	}
 
 }
-@PART[ROE-BabySergeantx11-BDB]:AFTER[RealismOverhaulEngines]
+@PART[ROE-BabySergeantx11]:AFTER[RealismOverhaulEngines]
 {
 	@title = Baby Sergeant 11x Cluster
 	@description = First stage in the Sergeant Cluster used on Juno I and II launch vehicles and on the Jupiter-C test rocket.

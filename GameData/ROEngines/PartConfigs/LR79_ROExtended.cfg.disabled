@@ -1,7 +1,7 @@
 PART
 {
 	module = Part
-	name = ROE-LR79-ROExtended				// Change Me
+	name = ROE-LR79
 	author = Saabstory88, Pap
 	
 	category = Engine

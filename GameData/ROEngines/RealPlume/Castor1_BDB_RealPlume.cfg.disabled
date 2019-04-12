@@ -2,7 +2,7 @@
 //  Castor-1 Real Plumes
 //  ==================================================
 
-@PART[ROE-Castor1Radial-BDB]:FOR[RealPlume]:NEEDS[SmokeScreen]
+@PART[ROE-Castor1Radial]:FOR[RealPlume]:NEEDS[SmokeScreen]
 {
     PLUME
     {
@@ -56,7 +56,7 @@
     }
 }
 
-@PART[ROE-Castor1Inline-BDB]:FOR[RealPlume]:NEEDS[SmokeScreen]
+@PART[ROE-Castor1Inline]:FOR[RealPlume]:NEEDS[SmokeScreen]
 {
     PLUME
     {

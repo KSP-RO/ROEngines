@@ -6,7 +6,7 @@
 PART
 {
 	module = Part
-	name = ROE-Castor1Radial-BDB
+	name = ROE-Castor1Radial
 	author = CobaltWolf, Pap
 	
 	category = Engine
@@ -98,7 +98,7 @@ PART
 		thrustTransformName = thrustTransform
 	}
 }
-@PART[ROE-Castor1Radial-BDB]:AFTER[RealismOverhaulEngines]
+@PART[ROE-Castor1Radial]:AFTER[RealismOverhaulEngines]
 {
 	@title = Castor 1 Radial SRB
 	@description = The Castor 1 Radial SRB was used as boosters for the Thor TAT, Delta-D and Delta E launch vehicles. 3 Castors were attached radially to provide extra ground thrust for the first 40 seconds of flight. [0.79 m]
@@ -115,7 +115,7 @@ PART
 PART
 {
 	module = Part
-	name = ROE-Castor1Inline-BDB
+	name = ROE-Castor1Inline
 	author = CobaltWolf, Pap
 	
 	category = Engine
@@ -263,7 +263,7 @@ PART
 		thrustTransformName = thrustTransform
 	}
 }
-@PART[ROE-Castor1Inline-BDB]:AFTER[RealismOverhaulEngines]
+@PART[ROE-Castor1Inline]:AFTER[RealismOverhaulEngines]
 {
 	@title = Castor 1
 	@description = The Castor 1 Solid Rocket Motor was used as the second stage on the Scout Launch Vehicle. [0.79 m]

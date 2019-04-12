@@ -2,7 +2,7 @@
 //  Baby Sergeant Real Plumes
 //  ==================================================
 
-@PART[ROE-BabySergeant-BDB]:FOR[RealPlume]:NEEDS[SmokeScreen]
+@PART[ROE-BabySergeant]:FOR[RealPlume]:NEEDS[SmokeScreen]
 {
     PLUME
     {
@@ -35,7 +35,7 @@
     }
 }
 
-@PART[ROE-BabySergeantX3-BDB]:FOR[RealPlume]:NEEDS[SmokeScreen]
+@PART[ROE-BabySergeantX3]:FOR[RealPlume]:NEEDS[SmokeScreen]
 {
     PLUME
     {
@@ -68,7 +68,7 @@
     }
 }
 
-@PART[ROE-BabySergeantX11-BDB]:FOR[RealPlume]:NEEDS[SmokeScreen]
+@PART[ROE-BabySergeantX11]:FOR[RealPlume]:NEEDS[SmokeScreen]
 {
     PLUME
     {
