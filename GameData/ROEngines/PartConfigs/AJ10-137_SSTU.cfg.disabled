@@ -1,7 +1,7 @@
 PART
 {
 	module = Part
-	name = ROE-AJ10-137-SSTU				// Change Me
+	name = ROE-AJ10-137
 	author = Shadowmage, Pap
 	
 	category = Engine
