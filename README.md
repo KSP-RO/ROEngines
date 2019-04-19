@@ -15,6 +15,11 @@ Many players will typically install mods for specific engines. This can lead to 
 ## Who deserves the credit?
 All the modders that used their time and considerable skills to develop the models, animations and textures that you see represented in game. Each part that is included inlcudes reference to the original modder that created the part. In all situations I have respected the licenses (as far as I know) and where authors could be reached, I received permission to include them. If you find anything that you do not think should belong, please let me know and I will remove them.
 
+## Dependencies
+Both dependencies come bundled with the mod.
+* B9PartSwitch
+* Patch Manager
+
 
 ## Parts Included
 * Liquid Engines (49)
@@ -45,6 +50,7 @@ All the modders that used their time and considerable skills to develop the mode
   * NAA75-110 Redstone (RealEngines by Alcentar)
   * NK-33 (RealEngines by Alcentar)
   * NK-43 (RealEngines by Alcentar)
+  * RD-0105 (RealEngines by Alcentar, Model Edits by Pap and Blowfish)
   * RD-0110 (SSTU by ShadowMage)
   * RD-100 (RealEngines by Alcentar)
   * RD-107 (SSTU by ShadowMage)
