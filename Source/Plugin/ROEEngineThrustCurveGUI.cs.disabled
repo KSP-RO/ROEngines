@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using RealFuels;
@@ -217,6 +218,36 @@ namespace ROEngines
                     break;
                 }
             }
+
+            IList<string> rcsEngineList = new List<string>();
+            bool isFound = false;
+
+            foreach (ModuleRCS rcs in part.FindModulesImplementing<ModuleRCS>())
+            {
+                foreach (string prop in rcs.propellants)r
+                {
+                    if (!rcsEngineList.Contains(rcs.resourceName))
+                    rcsEngineList.Add(rcs.resourceName);
+                }
+            }
+            foreach (string res in rcsEngineList)
+            {
+                isFound = false;
+                foreach (PartResource pr in part.Resources)
+                {
+                    if (res == pr.ToString())
+                    {
+                        isFound = true;
+                        return;
+                    }
+                }
+                if (!isFound)
+                {
+                    return "Warning! You have an engine configured with " + res + ", but do not have the fuel on your craft!";
+                }
+            }
+
+
         }
     }
 }

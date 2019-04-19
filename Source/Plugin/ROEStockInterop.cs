@@ -9,6 +9,7 @@ namespace ROEngines
     public class ROEStockInterop : MonoBehaviour
     {
 
+        #region SSTU Interop for Animations
         private static List<Part> dragCubeUpdateParts = new List<Part>();
         private static List<Part> delayedUpdateDragCubeParts = new List<Part>();
         private static List<Part> FARUpdateParts = new List<Part>();
@@ -83,6 +84,7 @@ namespace ROEngines
             FARUpdateParts.Clear();
         }
 
+		/*
         public void LateUpdate()
         {
             if (HighLogic.LoadedSceneIsEditor && fireEditorEvent)
@@ -90,22 +92,8 @@ namespace ROEngines
                 GameEvents.onEditorShipModified.Fire(EditorLogic.fetch.ship);
             }
             fireEditorEvent = false;
-
-            //if (HighLogic.LoadedSceneIsEditor && Input.GetKey(KeyCode.U))
-            //{
-            //    MonoBehaviour.print("Recolor part pick!");
-            //    EditorLogic el = EditorLogic.fetch;
-            //    Camera c = el.editorCamera;
-            //    Ray ray = c.ScreenPointToRay(Input.mousePosition);
-            //    RaycastHit hit;
-            //    int layerMask = 0 | 1 | 1<<2;
-            //    if (Physics.Raycast(ray, out hit, 1000f, layerMask))
-            //    {
-            //        Part p = hit.collider.gameObject.GetComponentUpwards<Part>();
-            //        MonoBehaviour.print("Picked Part: " + p);
-            //    }
-            //}
         }
+		*/
 
         private static void seatFirstCollider(Part part)
         {
@@ -129,17 +117,8 @@ namespace ROEngines
             part.DragCubes.Cubes.Add(newDefaultCube);
             part.DragCubes.ResetCubeWeights();
         }
-        
-        public static void updateEngineThrust(ModuleEngines engine, float minThrust, float maxThrust)
-        {
-            engine.minThrust = minThrust;
-            engine.maxThrust = maxThrust;
-            ConfigNode updateNode = new ConfigNode("MODULE");
-            updateNode.AddValue("maxThrust", engine.maxThrust);
-            updateNode.AddValue("minThrust", engine.minThrust);
-            engine.OnLoad(updateNode);
-        }
 
+		/*
         public static void updatePartHighlighting(Part part)
         {
             if (!HighLogic.LoadedSceneIsEditor && !HighLogic.LoadedSceneIsFlight) { return; }//noop on prefabs
@@ -159,6 +138,23 @@ namespace ROEngines
                 part.RefreshHighlighter();
             }
         }
+		*/
+
+        #endregion
+
+        #region SSTU Interop for SRB's
+		/*
+        public static void updateEngineThrust(ModuleEngines engine, float minThrust, float maxThrust)
+        {
+            engine.minThrust = minThrust;
+            engine.maxThrust = maxThrust;
+            ConfigNode updateNode = new ConfigNode("MODULE");
+            updateNode.AddValue("maxThrust", engine.maxThrust);
+            updateNode.AddValue("minThrust", engine.minThrust);
+            engine.OnLoad(updateNode);
+        }
+		*/
+        #endregion       
 
     }
 }

@@ -3,13 +3,44 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
-using System.Text.RegularExpressions;
+//using System.Text.RegularExpressions;
 
 namespace ROEngines
 {
     public static class ROEExtensions
     {
-        #region SSTU ConfigNode Extensions
+        
+        #region SSTU Extensions for Deployable Engines
+
+        public static Transform[] FindChildren(this Transform transform, String name)
+        {
+            List<Transform> trs = new List<Transform>();
+            if (transform.name == name) { trs.Add(transform); }
+            locateTransformsRecursive(transform, name, trs);
+            return trs.ToArray();
+        }
+
+        private static void locateTransformsRecursive(Transform tr, String name, List<Transform> output)
+        {
+            foreach (Transform child in tr)
+            {
+                if (child.name == name) { output.Add(child); }
+                locateTransformsRecursive(child, name, output);
+            }
+        }
+
+        public static Transform FindRecursive(this Transform transform, String name)
+        {
+            if (transform.name == name) { return transform; }//was the original input transform
+            Transform tr = transform.Find(name);//found as a direct child
+            if (tr != null) { return tr; }
+            foreach (Transform child in transform)
+            {
+                tr = child.FindRecursive(name);
+                if (tr != null) { return tr; }
+            }
+            return null;
+        }
 
         public static string GetStringValue(this ConfigNode node, String name, String defaultValue)
         {
@@ -21,6 +52,61 @@ namespace ROEngines
         {
             return GetStringValue(node, name, "");
         }
+
+        public static bool GetBoolValue(this ConfigNode node, String name, bool defaultValue)
+        {
+            String value = node.GetValue(name);
+            if (value == null) { return defaultValue; }
+            try
+            {
+                return bool.Parse(value);
+            }
+            catch (Exception e)
+            {
+                MonoBehaviour.print(e.Message);
+            }
+            return defaultValue;
+        }
+
+        public static float GetFloatValue(this ConfigNode node, String name, float defaultValue)
+        {
+            String value = node.GetValue(name);
+            if (value == null) { return defaultValue; }
+            try
+            {
+                return float.Parse(value);
+            }
+            catch (Exception e)
+            {
+                MonoBehaviour.print(e.Message);
+            }
+            return defaultValue;
+        }
+
+        public static int GetIntValue(this ConfigNode node, String name, int defaultValue)
+        {
+            String value = node.GetValue(name);
+            if (value == null) { return defaultValue; }
+            try
+            {
+                return int.Parse(value);
+            }
+            catch (Exception e)
+            {
+                MonoBehaviour.print(e.Message);
+            }
+            return defaultValue;
+        }
+
+        public static int GetIntValue(this ConfigNode node, String name)
+        {
+            return GetIntValue(node, name, 0);
+        }
+
+        #endregion
+
+        #region SSTU Extensions for SRB's
+        /*
 
         public static FloatCurve GetFloatCurve(this ConfigNode node, String name, FloatCurve defaultValue = null)
         {
@@ -108,37 +194,7 @@ namespace ROEngines
                 data = data + key.time + "," + key.value + "," + key.inTangent + "," + key.outTangent;
             }
             return data;
-        }
-
-        public static Transform[] FindChildren(this Transform transform, String name)
-        {
-            List<Transform> trs = new List<Transform>();
-            if (transform.name == name) { trs.Add(transform); }
-            locateTransformsRecursive(transform, name, trs);
-            return trs.ToArray();
-        }
-
-        private static void locateTransformsRecursive(Transform tr, String name, List<Transform> output)
-        {
-            foreach (Transform child in tr)
-            {
-                if (child.name == name) { output.Add(child); }
-                locateTransformsRecursive(child, name, output);
-            }
-        }
-
-        public static Transform FindRecursive(this Transform transform, String name)
-        {
-            if (transform.name == name) { return transform; }//was the original input transform
-            Transform tr = transform.Find(name);//found as a direct child
-            if (tr != null) { return tr; }
-            foreach (Transform child in transform)
-            {
-                tr = child.FindRecursive(name);
-                if (tr != null) { return tr; }
-            }
-            return null;
-        }
+        } 
 
         public static bool[] GetBoolValues(this ConfigNode node, String name)
         {
@@ -150,21 +206,6 @@ namespace ROEngines
                 vals[i] = ROEUtil.safeParseBool(values[i]);
             }
             return vals;
-        }
-
-        public static bool GetBoolValue(this ConfigNode node, String name, bool defaultValue)
-        {
-            String value = node.GetValue(name);
-            if (value == null) { return defaultValue; }
-            try
-            {
-                return bool.Parse(value);
-            }
-            catch (Exception e)
-            {
-                MonoBehaviour.print(e.Message);
-            }
-            return defaultValue;
         }
 
         public static float[] GetFloatValues(this ConfigNode node, String name, float[] defaults)
@@ -185,44 +226,9 @@ namespace ROEngines
             return GetFloatValues(node, name, new float[] { });
         }
 
-        public static float GetFloatValue(this ConfigNode node, String name, float defaultValue)
-        {
-            String value = node.GetValue(name);
-            if (value == null) { return defaultValue; }
-            try
-            {
-                return float.Parse(value);
-            }
-            catch (Exception e)
-            {
-                MonoBehaviour.print(e.Message);
-            }
-            return defaultValue;
-        }
-
         public static float GetFloatValue(this ConfigNode node, String name)
         {
             return GetFloatValue(node, name, 0);
-        }
-
-        public static int GetIntValue(this ConfigNode node, String name, int defaultValue)
-        {
-            String value = node.GetValue(name);
-            if (value == null) { return defaultValue; }
-            try
-            {
-                return int.Parse(value);
-            }
-            catch (Exception e)
-            {
-                MonoBehaviour.print(e.Message);
-            }
-            return defaultValue;
-        }
-
-        public static int GetIntValue(this ConfigNode node, String name)
-        {
-            return GetIntValue(node, name, 0);
         }
 
         /// <summary>
@@ -253,6 +259,7 @@ namespace ROEngines
             }
         }
 
+        */
         #endregion
     }
 }

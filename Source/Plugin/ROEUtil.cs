@@ -8,8 +8,20 @@ namespace ROEngines
 {
     public class ROEUtil
     {
-        #region SSTU Utilities
+        #region SSTU Utilities for Deployable Engines
 
+        public static ConfigNode parseConfigNode(String input)
+        {
+            ConfigNode baseCfn = ConfigNode.Parse(input);
+            if (baseCfn == null) { MonoBehaviour.print("ERROR: Base config node was null!!\n" + input); }
+            else if (baseCfn.nodes.Count <= 0) { MonoBehaviour.print("ERROR: Base config node has no nodes!!\n" + input); }
+            return baseCfn.nodes[0];
+        }
+
+        #endregion
+
+        #region SSTU Utilities for SRB's
+        /*
         public static String printFloatCurve(FloatCurve curve)
         {
             string str = "";
@@ -26,7 +38,6 @@ namespace ROEngines
             }
             return str;
         }
-
         public static float safeParseFloat(String val)
         {
             float returnVal = 0;
@@ -47,20 +58,7 @@ namespace ROEngines
             else if (v.Equals("true") || v.Equals("yes") || v.Equals("1")) { return true; }
             return false;
         }
-
-        #endregion
-
-        #region SSTU ConfigNode
-        // Instead of making a full class for this, just add it as a utility
-
-        public static ConfigNode parseConfigNode(String input)
-        {
-            ConfigNode baseCfn = ConfigNode.Parse(input);
-            if (baseCfn == null) { MonoBehaviour.print("ERROR: Base config node was null!!\n" + input); }
-            else if (baseCfn.nodes.Count <= 0) { MonoBehaviour.print("ERROR: Base config node has no nodes!!\n" + input); }
-            return baseCfn.nodes[0];
-        }
-
+        */
         #endregion
 
     }

@@ -31,18 +31,9 @@
     <RootNamespace>ROEngines</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Assembly-CSharp">
-      <HintPath>..\..\..\KSP DLL\1.3.1\Assembly-CSharp.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="RealFuels, Version=12.6.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\KSP DLL\1.3.1\RealFuels.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="SolverEngines">
-      <HintPath>..\..\..\..\..\..\..\..\Games\Kerbal Space Program 1.3.1 - FINAL\GameData\SolverEngines\Plugins\SolverEngines.dll</HintPath>
+      <HintPath>..\..\..\..\KSP DLL\1.3.1\Assembly-CSharp.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System">
@@ -69,19 +60,19 @@
   <ItemGroup>
     <Compile Include="AnimState.cs" />
     <Compile Include="AnimationModule.cs" />
-    <Compile Include="ModelData.cs" />
-    <Compile Include="ModelModule.cs" />
+    <None Include="ModelData.cs.disabled" />
+    <None Include="ModelModule.cs.disabled" />
     <Compile Include="ROELog.cs" />
     <Compile Include="ROEExtensions.cs" />
     <Compile Include="ROEUtil.cs" />
-    <Compile Include="ROEEngineStatDisplay.cs" />
-    <Compile Include="ROEEngineThrustCurveGUI.cs" />
-    <Compile Include="ROEAnimateEngineHeat.cs" />
+    <None Include="ROEEngineStatDisplay.cs.disabled" />
+    <None Include="ROEEngineThrustCurveGUI.cs.disabled" />
+    <None Include="ROEAnimateEngineHeat.cs.disabled" />
     <Compile Include="ROEDeployableEngine.cs" />
     <Compile Include="ROEStockInterop.cs" />
     <None Include="ThrustCurveEditorGUI - Original.cs.disabled" />
-    <Compile Include="ROEProcSRB.cs" />
-    <Compile Include="ThrustCurveEditorGUI.cs" />
+    <None Include="ROEProcSRB.cs.disabled" />
+    <None Include="ThrustCurveEditorGUI.cs.disabled" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSHARP.Targets" />
   <ProjectExtensions>
