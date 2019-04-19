@@ -22,7 +22,7 @@ All the modders that used their time and considerable skills to develop the mode
   * Aerobee (Taerobee by Beale and CobaltWolf)
   * Agena 8048 (SSTU by ShadowMage)
   * Agena 8096 (SSTU by ShadowMage)
-  * AJ10-137 (SSTU by ShadowMage)
+  * AJ10-137 (Apollo by DECQ)
   * AJ10-190 (SSTU by ShadowMage)
   * AJ10 Early (RealEngines by Alcentar)
   * AJ10 Mid (RealEngines by Alcentar)
