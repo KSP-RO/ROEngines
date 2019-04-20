@@ -23,11 +23,8 @@
         { "name" : "KSCSwitcher" },
 		{ "name" : "RP-0" }
     ],
-    "provides"  : [ "RealPlumeConfigs", "RealFuels-Engine-Configs", "TestFlightConfig" ],
     "conflicts" :   [
-        { "name" : "TweakableEverything" },
-        { "name" : "RealPlumeConfigs" },
-        { "name" : "TestFlightConfig" }
+        { "name" : "TweakableEverything" }
     ],
     "install" : [
         {
