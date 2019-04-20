@@ -1,0 +1,22 @@
+{
+    "NAME"     : "RO Engines",
+    "URL"      : "https://raw.githubusercontent.com/KSP-RO/ROEngines/master/GameData/ROEngines/ROEngines.version",
+    "DOWNLOAD" : "https://github.com/KSP-RO/ROEngines/releases",
+    "HOMEPAGE"  : "https://github.com/KSP-RO/ROEngines/",
+    "GITHUB" : {
+        "USERNAME"          : "KSP-RO",
+        "REPOSITORY"        : "ROEngines",
+        "ALLOW_PRE_RELEASE" : false
+    },
+	"VERSION": {
+		"MAJOR": "1",
+		"MINOR": "3",
+		"PATCH": "1",
+		"BUILD": "0"
+	},
+    "KSP_VERSION" : {
+        "MAJOR": "1",
+        "MINOR": "3",
+        "PATCH": "1"
+    }
+}
