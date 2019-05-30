@@ -15,11 +15,28 @@ Many players will typically install mods for specific engines. This can lead to 
 ## Who deserves the credit?
 All the modders that used their time and considerable skills to develop the models, animations and textures that you see represented in game. Each part that is included inlcudes reference to the original modder that created the part. In all situations I have respected the licenses (as far as I know) and where authors could be reached, I received permission to include them. If you find anything that you do not think should belong, please let me know and I will remove them.
 
-## Dependencies
-Both dependencies come bundled with the mod.
-* B9PartSwitch
-* Patch Manager
 
+## Dependencies
+* Module Manager
+* Realism Overhaul
+  
+These come bundled with the mod.
+* B9PartSwitch
+* **[Patch Manager][link:patch-manager]**
+
+
+## Where are my Parts!?
+ROEngines uses Module Manager and Patch Manager to remove the duplicated versions of the engines included in the mod. This way, you will only see one version of say an LR79, and it will be the version from ROEngines.
+
+I understand that some of you may want these other versions of engines back, so I have used the **[Patch Manager][link:patch-manager]** mod to make this very easy for you to manage. **[Patch Manager][link:patch-manager]** allows you to select which Module Manager patches are applied. So for each engine that is included in ROEngines, you can choose to keep, or remove the patch that will hide the other variants, and the great thing is that it is all done through the KSP interface, no config editing required.
+
+#### Using Patch Manager
+1. Go to the Space Center screen and click the icon for Patch Manager ![][image:pm-icon]
+2. Inside the Window, click on the ROEngines button ![][image:pm-button]
+3. By default, all patches are active. Active patches are green. When these patches are active, it means that ONLY the ROEngines version of the engine will show in your game. All other versions of the same engine will be removed. ![][image:pm-active]
+4. To deactive a patch (allow duplicate engines), you simply click on the corresponding button. If the patch is disabled, it is shown in red. ![][image:pm-disabled]
+5. Click the Apply All button on the bottom left of the window.
+6. Use Patch Manager to shut down KSP, or click acknowledge and continue playing. Your patch will not be active until you restart KSP. ![][image:pm-restart]
 
 ## Parts Included
 * Liquid Engines (49)
@@ -116,3 +133,10 @@ Both dependencies come bundled with the mod.
   
 * Launch Clamps
   * All from FASA which was originally created by Frizzank
+
+[link:patch-manager]:   https://forum.kerbalspaceprogram.com/index.php?/topic/163072-15-patchmanager/
+[image:pm-icon]:        https://cdn.discordapp.com/attachments/329685702247841792/583494002205261834/unknown.png
+[image:pm-button]:      https://cdn.discordapp.com/attachments/329685702247841792/583493166963884033/unknown.png
+[image:pm-active]:		https://cdn.discordapp.com/attachments/329685702247841792/583493326267875328/unknown.png
+[image:pm-disabled]:	https://cdn.discordapp.com/attachments/329685702247841792/583493507746889772/unknown.png
+[image:pm-restart]:		https://cdn.discordapp.com/attachments/329685702247841792/583493721148882956/unknown.png
