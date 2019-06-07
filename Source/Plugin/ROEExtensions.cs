@@ -103,6 +103,39 @@ namespace ROEngines
             return GetIntValue(node, name, 0);
         }
 
+        public static Vector3 GetVector3(this ConfigNode node, String name, Vector3 defaultValue)
+        {
+            String value = node.GetValue(name);
+            if (value == null)
+            {
+                return defaultValue;
+            }
+            String[] vals = value.Split(',');
+            if (vals.Length < 3)
+            {
+                MonoBehaviour.print("ERROR parsing values for Vector3 from input: " + value + ". found less than 3 values, cannot create Vector3");
+                return defaultValue;
+            }
+            return new Vector3((float)ROEUtil.safeParseDouble(vals[0]), (float)ROEUtil.safeParseDouble(vals[1]), (float)ROEUtil.safeParseDouble(vals[2]));
+        }
+
+        public static Vector3 GetVector3(this ConfigNode node, String name)
+        {
+            String value = node.GetValue(name);
+            if (value == null)
+            {
+                MonoBehaviour.print("ERROR: No value for name: " + name + " found in config node: " + node);
+                return Vector3.zero;
+            }
+            String[] vals = value.Split(',');
+            if (vals.Length < 3)
+            {
+                MonoBehaviour.print("ERROR parsing values for Vector3 from input: " + value + ". found less than 3 values, cannot create Vector3");
+                return Vector3.zero;
+            }
+            return new Vector3((float)ROEUtil.safeParseDouble(vals[0]), (float)ROEUtil.safeParseDouble(vals[1]), (float)ROEUtil.safeParseDouble(vals[2]));
+        }
+
         #endregion
 
         #region SSTU Extensions for SRB's

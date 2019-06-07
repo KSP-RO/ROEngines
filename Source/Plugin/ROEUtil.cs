@@ -18,6 +18,20 @@ namespace ROEngines
             return baseCfn.nodes[0];
         }
 
+        public static double safeParseDouble(String val)
+        {
+            double returnVal = 0;
+            try
+            {
+                returnVal = double.Parse(val);
+            }
+            catch (Exception e)
+            {
+                MonoBehaviour.print("ERROR: could not parse double value from: '" + val + "'\n" + e.Message);
+            }
+            return returnVal;
+        }
+
         #endregion
 
         #region SSTU Utilities for SRB's

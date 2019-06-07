@@ -60,6 +60,7 @@
   <ItemGroup>
     <Compile Include="AnimState.cs" />
     <Compile Include="AnimationModule.cs" />
+    <Compile Include="ROEModelConstraint.cs" />
     <None Include="ModelData.cs.disabled" />
     <None Include="ModelModule.cs.disabled" />
     <Compile Include="ROELog.cs" />
