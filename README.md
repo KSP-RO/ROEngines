@@ -19,9 +19,9 @@ All the modders that used their time and considerable skills to develop the mode
 ## Dependencies
 * Module Manager
 * Realism Overhaul
+* B9PartSwitch
   
 These come bundled with the mod.
-* B9PartSwitch
 * **[Patch Manager][link:patch-manager]**
 
 
