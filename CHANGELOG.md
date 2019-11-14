@@ -1,3 +1,25 @@
+v1.4.0.0 - 11/14/2019
+=====================================================================================
+* Fix Gimbal Issues and look at constraints (thanks to Blowfish)
+* Fix Plume Issues (thanks to Blowfish)
+* Fixed the verniers on RD-0105
+* Fixed Gimbal Issues
+	* RD-58
+	* RD-8 (thanks fat-lobyte)
+	* NK33 (thanks fat-lobyte)
+	* NK43 (thanks fat-lobyte)
+	* AJ10 Advanced
+* Updated the Textures Unlimted shaders to the new versions
+* Added a whitelist for Restock (thanks Gordon-Dry)
+* Folder Restructuring
+* NEW ENGINES
+	* Merlin Family (SSTU by Shadowmage45)
+* Fixed the Aerobee solids from not being hidden in Patch Manager (thanks rsparkyc)
+* Fixed many plumes and textures (thanks gazpachian)
+* Made the MR104, PLE and S400 Pressure Fed (thanks gazpachian)
+
+
+
 v1.3.1.0 - 4/20/2019
 =====================================================================================
 * NEW ENGINES ADDED

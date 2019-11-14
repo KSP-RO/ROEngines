@@ -39,7 +39,7 @@ I understand that some of you may want these other versions of engines back, so 
 6. Use Patch Manager to shut down KSP, or click acknowledge and continue playing. Your patch will not be active until you restart KSP. ![][image:pm-restart]
 
 ## Parts Included
-* Liquid Engines (49)
+* Liquid Engines (50+)
   * A-4 (RealEngines by Alcentar)
   * Aerobee (Taerobee by Beale and CobaltWolf)
   * Agena 8048 (SSTU by ShadowMage)
@@ -64,6 +64,7 @@ I understand that some of you may want these other versions of engines back, so 
   * LR89 (Bluedog Design by CobaltWolf)
   * LR101 (Bluedog Design by CobaltWolf)
   * LR105 (Bluedog Design by CobaltWolf)
+  * Merlin Family (SSTU by ShadowMage)
   * NAA75-110 Redstone (RealEngines by Alcentar)
   * NK-33 (RealEngines by Alcentar)
   * NK-43 (RealEngines by Alcentar)
