@@ -1,1 +1,0 @@
-This will allow PatchManager to save files here. DO NOT DELETE.
