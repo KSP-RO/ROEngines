@@ -1,0 +1,45 @@
+//  =================================================================================
+//	UA1206 Parts
+//	Contains the Engine and the Nosecone with SRM
+//  =================================================================================
+
+@PART[ROE-UA1207]
+{
+	@name = ROE-UA1206
+	
+	@MODEL
+	{
+		@scale = 1.0, 0.8724, 1.0
+	}
+	
+	@node_stack_top = 0.0, 11.5633, 0.0, 0.0, 1.0, 0.0, 3
+	@node_stack_bottom = 0.0, -15.1781, 0.0, 0.0, -1.0, 0.0, 3
+
+	@title = UA1206
+	@description = The UA1206 was used on the Titan 34D and the Commercial Titan 3. With a more powerful thrust, the UA1206 was an improvement over the UA1205 used on the Titan III. Burn Time: 115s Diameter: [3.05 m].
+	
+	@tags = ua1206, 120, 120-in, in, titan, segment, solid, srb, radial, booster, 34d, 34, commercial
+	
+	@engineType = UA1206
+}
+
+
+//  =================================================================================
+
+
+@PART[ROE-UA1207nc]
+{
+	@name = ROE-UA1206nc
+	
+	@MODEL
+	{
+		@scale = 1.0, 0.698, 1.0
+	}
+	
+	@title = UA1206 Nosecone and Separator
+	@description = The nosecone for the UA1206 Solid Rocket Motor with an integrated separation motor.
+	
+	@tags = ua1206, 120, 120-in, in, titan, 34, 34d, separator, nosecone
+	
+	@mass = 0.22
+}

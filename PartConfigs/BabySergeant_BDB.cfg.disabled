@@ -1,0 +1,276 @@
+//  =================================================================================
+//	Baby Sergeant
+//	Contains 3 Separate Parts for Single, 3x Cluster, and 11x Cluster
+//  =================================================================================
+
+PART
+{
+	module = Part
+	name = ROE-BabySergeant
+	author = CobaltWolf, Pap
+	
+	category = Engine
+	subcategory = 0
+	RSSROConfig = true
+	RP0conf = true
+	
+	crashTolerance = 10
+	maxTemp = 673.15
+	skinTemp = 773.15
+	fuelCrossfeed = true
+	breakingForce = 10000
+	breakingTorque = 10000
+	
+	//  ============================================================================
+	//	Update Below
+	//  ============================================================================
+	
+	MODEL
+	{
+		model = ROEngines/Assets/BDB/BabySergeant/bluedog_Sargent_1x
+		scale = 1.32, 1.32, 1.32
+	}
+	
+	scale = 1.0
+	rescaleFactor = 1.0
+	node_stack_top = 0.0, 0.3552, 0.0, 0.0, 1.0, 0.0, 0
+	node_stack_bottom = 0.0, -0.6846, 0.0, 0.0, -1.0, 0.0, 0
+	node_attach = 0.0, 0.0, 0.0792 , 0.0, 0.0, -1.0, 1
+	// stack, srfAttach, allowStack, allowSrfAttach, allowCollision
+	attachRules = 1,1,1,1,1
+	
+	title = Baby Sergeant (5.4KS1975)
+	manufacturer = Thiokol
+	description = A small solid kick motor used on the Jupiter-C sounding rocket (and later the Juno I and II launch vehicles) as upper stages in clusters of 11, 3 and, finally, one attached to the payload. The standard version uses the T17-E2 grain mixture while the higher performance one uses the JPL-532A. Very low overall performance and reliability.
+	
+	tags = baby, sergeant, explorer, juno, jupiter
+	
+	engineType = BabySergeant
+	stagingIcon = SOLID_BOOSTER
+	stageOffset = 1
+    childStageOffset = 1
+	
+	TechRequired = unlockParts
+	cost = 150
+	entryCost = 1	
+	
+	MODULE
+	{
+		name = ModuleEnginesRF
+		thrustVectorTransformName = thrustTransform
+	}
+	
+	MODULE
+	{
+		name = ModuleFuelTanks
+		type = PSPC
+		volume = 12.69
+		basemass = -1
+	}
+	
+	MODULE
+	{
+		name = ModuleJettison
+		jettisonName = fairing
+		bottomNodeName = bottom
+		isFairing = True
+		jettisonedObjectMass = 0.01
+		jettisonForce = 5
+		jettisonDirection = 0 0 1
+	}
+	
+	MODULE
+	{
+		name = ModuleSurfaceFX
+		thrustProviderModuleIndex = 0
+		fxMax = 0.1
+		maxDistance = 10
+		falloff = 4
+		thrustTransformName = thrustTransform
+	}
+
+}
+
+
+//  =================================================================================
+
+
+PART
+{
+	module = Part
+	name = ROE-BabySergeantX3
+	author = CobaltWolf, Pap
+	
+	category = Engine
+	subcategory = 0
+	RSSROConfig = true
+	RP0conf = true
+	
+	crashTolerance = 10
+	maxTemp = 673.15
+	skinTemp = 773.15
+	fuelCrossfeed = true
+	breakingForce = 10000
+	breakingTorque = 10000
+	
+	//  ============================================================================
+	//	Update Below
+	//  ============================================================================
+	
+	MODEL
+	{
+		model = ROEngines/Assets/BDB/BabySergeant/bluedog_Sargent_3x
+		scale = 1.32, 1.32, 1.32
+	}
+	
+	scale = 1.0
+	rescaleFactor = 1.0
+	node_stack_top = 0.0, 0.33, 0.0, 0.0, 1.0, 0.0, 0
+	node_stack_connect1 = 0.0, 0.33, 0.0, 0.0, -1.0, 0.0, 0
+	node_stack_bottom = 0.0, -0.8909, 0.0, 0.0, -1.0, 0.0, 0
+	// stack, srfAttach, allowStack, allowSrfAttach, allowCollision
+	attachRules = 1,0,1,1,1
+	
+	title = Baby Sergeant 3x Cluster
+	manufacturer = Thiokol
+	description = Middle cluster in Sergeant Cluster used on Juno I and II launch vehicles and on the Jupiter-C test rocket.
+	
+	tags = baby, sergeant, explorer, juno, jupiter, cluster, 3x
+	
+	engineType = BabySergeant
+	%engineTypeMult = 3
+	stagingIcon = SOLID_BOOSTER
+	stageOffset = 1
+    childStageOffset = 1
+	
+	TechRequired = unlockParts
+	cost = 150
+	entryCost = 1	
+	
+	MODULE
+	{
+		name = ModuleEnginesRF
+		thrustVectorTransformName = thrustTransform
+	}
+	
+	MODULE
+	{
+		name = ModuleFuelTanks
+		type = PSPC
+		volume = 38.07
+		basemass = -1
+	}
+	
+	MODULE
+	{
+		name = ModuleSurfaceFX
+		thrustProviderModuleIndex = 0
+		fxMax = 0.1
+		maxDistance = 10
+		falloff = 4
+		thrustTransformName = thrustTransform
+	}
+
+}
+@PART[ROE-BabySergeantX3]:AFTER[RealismOverhaulEngines]
+{
+	@title = Baby Sergeant 3x Cluster
+	@description = Middle cluster in Sergeant Cluster used on Juno I and II launch vehicles and on the Jupiter-C test rocket.
+}
+
+
+//  =================================================================================
+
+
+PART
+{
+	module = Part
+	name = ROE-BabySergeantX11
+	author = CobaltWolf, Pap
+	
+	category = Engine
+	subcategory = 0
+	RSSROConfig = true
+	RP0conf = true
+	
+	crashTolerance = 10
+	maxTemp = 673.15
+	skinTemp = 773.15
+	fuelCrossfeed = true
+	breakingForce = 10000
+	breakingTorque = 10000
+	
+	//  ============================================================================
+	//	Update Below
+	//  ============================================================================
+	
+	MODEL
+	{
+		model = ROEngines/Assets/BDB/BabySergeant/bluedog_Sargent_11x
+		scale = 1.32, 1.32, 1.32
+	}
+	
+	scale = 1.0
+	rescaleFactor = 1.0
+	node_stack_top = 0.0, 0.5714, 0.0, 0.0, 1.0, 0.0, 0
+	node_stack_bottom = 0.0, -0.6405, 0.0, 0.0, -1.0, 0.0, 0
+	// stack, srfAttach, allowStack, allowSrfAttach, allowCollision
+	attachRules = 1,0,1,1,1
+	
+	title = Baby Sergeant 11x Cluster
+	manufacturer = Thiokol
+	description = First stage in the Sergeant Cluster used on Juno I and II launch vehicles and on the Jupiter-C test rocket.
+	
+	tags = baby, sergeant, explorer, juno, jupiter, cluster, 11x
+	
+	engineType = BabySergeant
+	%engineTypeMult = 11
+	stagingIcon = SOLID_BOOSTER
+	stageOffset = 1
+    childStageOffset = 1
+	
+	TechRequired = unlockParts
+	cost = 150
+	entryCost = 1	
+	
+	MODULE
+	{
+		name = ModuleEnginesRF
+		thrustVectorTransformName = thrustTransform
+	}
+	
+	MODULE
+	{
+		name = ModuleFuelTanks
+		type = PSPC
+		volume = 139.59
+		basemass = -1
+	}
+	
+	MODULE
+	{
+		name = ModuleJettison
+		jettisonName = fairing
+		bottomNodeName = bottom
+		isFairing = True
+		jettisonedObjectMass = 0.01
+		jettisonForce = 5
+		jettisonDirection = 0 0 1
+	}
+	
+	MODULE
+	{
+		name = ModuleSurfaceFX
+		thrustProviderModuleIndex = 0
+		fxMax = 0.1
+		maxDistance = 10
+		falloff = 4
+		thrustTransformName = thrustTransform
+	}
+
+}
+@PART[ROE-BabySergeantx11]:AFTER[RealismOverhaulEngines]
+{
+	@title = Baby Sergeant 11x Cluster
+	@description = First stage in the Sergeant Cluster used on Juno I and II launch vehicles and on the Jupiter-C test rocket.
+}
