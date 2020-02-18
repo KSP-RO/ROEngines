@@ -20,6 +20,7 @@ All the modders that used their time and considerable skills to develop the mode
 * Module Manager
 * Realism Overhaul
 * B9PartSwitch
+* **[ROLibrary][link:ROLib]**
   
 These come bundled with the mod.
 * **[Patch Manager][link:patch-manager]**
@@ -136,6 +137,7 @@ I understand that some of you may want these other versions of engines back, so 
   * All from FASA which was originally created by Frizzank
 
 [link:patch-manager]:   https://forum.kerbalspaceprogram.com/index.php?/topic/163072-15-patchmanager/
+[link:ROLib]:           https://github.com/KSP-RO/ROLibrary
 [image:pm-icon]:        https://cdn.discordapp.com/attachments/329685702247841792/583494002205261834/unknown.png
 [image:pm-button]:      https://cdn.discordapp.com/attachments/329685702247841792/583493166963884033/unknown.png
 [image:pm-active]:		https://cdn.discordapp.com/attachments/329685702247841792/583493326267875328/unknown.png
