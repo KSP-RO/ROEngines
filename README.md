@@ -20,6 +20,7 @@ All the modders that used their time and considerable skills to develop the mode
 * Module Manager
 * Realism Overhaul
 * B9PartSwitch
+* **[ROLibrary][link:ROLib]**
   
 These come bundled with the mod.
 * **[Patch Manager][link:patch-manager]**
@@ -68,20 +69,25 @@ I understand that some of you may want these other versions of engines back, so 
   * NAA75-110 Redstone (RealEngines by Alcentar)
   * NK-33 (RealEngines by Alcentar)
   * NK-43 (RealEngines by Alcentar)
+  * ORM-65	(Custom Model by Basila)
   * RD-0105 (RealEngines by Alcentar, Model Edits by Pap and Blowfish)
   * RD-0110 (SSTU by ShadowMage)
   * RD-100 (RealEngines by Alcentar)
   * RD-107 (SSTU by ShadowMage)
   * RD-108 (SSTU by ShadowMage)
+  * RD-119 (Soviet Rockets by RaiderNick)
   * RD-170 (SSTU by ShadowMage)
   * RD-180 (SSTU by ShadowMage)
   * RD-191 (SSTU by ShadowMage)
+  * RD-214 (Soviet Rockets by RaiderNick)
+  * RD-216 (Soviet Rockets by RaiderNick)
   * RD-8 (RealEngines by Alcentar)
   * RD-58 (RealEngines by Alcentar)
   * RL10A-3 (SSTU by ShadowMage)
   * RL10A-4 (SSTU by ShadowMage)
   * RL10A-5 (SSTU by ShadowMage)
   * RL10B-2 (SSTU by ShadowMage)
+  * RL10C-1	(SSTU by ShadowMage, Model Edits by Pap)
   * RS-68 (SSTU by ShadowMage)
   * RS-25 SSME (SSTU by ShadowMage)
   * Rutherford (NicheParts by MockingBird)
@@ -91,6 +97,8 @@ I understand that some of you may want these other versions of engines back, so 
   * S2.253 (Modified RD-100 from RealEngines by Alcentar)
   * X-405 Vanguard (Bluedog Design by CobaltWolf)
   * X-405H Vega (Bluedog Design by CobaltWolf)
+  * XLR41	(RealEngines by Alcentar)
+  * XLR43	(RealEngines by Alcentar)
   
 * Solid Engines (19)
   * Aerobee Aerojet 1.8KS7800 (US Rockets by RaiderNick)
@@ -136,6 +144,7 @@ I understand that some of you may want these other versions of engines back, so 
   * All from FASA which was originally created by Frizzank
 
 [link:patch-manager]:   https://forum.kerbalspaceprogram.com/index.php?/topic/163072-15-patchmanager/
+[link:ROLib]:           https://github.com/KSP-RO/ROLibrary
 [image:pm-icon]:        https://cdn.discordapp.com/attachments/329685702247841792/583494002205261834/unknown.png
 [image:pm-button]:      https://cdn.discordapp.com/attachments/329685702247841792/583493166963884033/unknown.png
 [image:pm-active]:		https://cdn.discordapp.com/attachments/329685702247841792/583493326267875328/unknown.png
