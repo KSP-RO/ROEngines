@@ -46,7 +46,7 @@ PART
 	
 	tags = ua1207, 120, 120-in, in, titan, iv, segment, solid, srb, radial, booster
 	
-	engineType = UA1205
+	engineType = UA1207
 	stagingIcon = SOLID_BOOSTER
 	stageOffset = 1
     childStageOffset = 1
