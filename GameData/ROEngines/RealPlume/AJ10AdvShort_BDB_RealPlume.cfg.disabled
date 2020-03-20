@@ -1,0 +1,10 @@
+@PART[ROE-AJ10AdvShort]:FOR[RealPlume]:NEEDS[SmokeScreen]
+{
+	PLUME_TEMPLATE
+	{
+		name = Hypergolic_UpperWhite
+		transformName = thrustTransform
+		scale = 0.5
+		offset = -0.1
+	}
+}
