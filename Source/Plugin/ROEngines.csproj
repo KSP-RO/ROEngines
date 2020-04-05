@@ -1,4 +1,4 @@
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -58,19 +58,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AnimState.cs" />
-    <Compile Include="AnimationModule.cs" />
-    <None Include="ROEModelConstraint.cs.disabled" />
-    <None Include="ModelData.cs.disabled" />
-    <None Include="ModelModule.cs.disabled" />
-    <Compile Include="ROELog.cs" />
-    <Compile Include="ROEExtensions.cs" />
-    <Compile Include="ROEUtil.cs" />
     <None Include="ROEEngineStatDisplay.cs.disabled" />
     <None Include="ROEEngineThrustCurveGUI.cs.disabled" />
     <None Include="ROEAnimateEngineHeat.cs.disabled" />
-    <None Include="ROEDeployableEngine.cs.disabled" />
-    <Compile Include="ROEStockInterop.cs" />
     <None Include="ThrustCurveEditorGUI - Original.cs.disabled" />
     <None Include="ROEProcSRB.cs.disabled" />
     <None Include="ThrustCurveEditorGUI.cs.disabled" />
