@@ -20,6 +20,7 @@ All the modders that used their time and considerable skills to develop the mode
 * Module Manager
 * Realism Overhaul
 * B9PartSwitch
+* **[ROLibrary][link:ROLib]**
   
 These come bundled with the mod.
 * **[Patch Manager][link:patch-manager]**
@@ -44,11 +45,12 @@ I understand that some of you may want these other versions of engines back, so 
   * Aerobee (Taerobee by Beale and CobaltWolf)
   * Agena 8048 (SSTU by ShadowMage)
   * Agena 8096 (SSTU by ShadowMage)
+  * Agena 8096C (Bluedog Design by CobaltWolf)
   * AJ10-137 (Apollo by DECQ)
   * AJ10-190 (SSTU by ShadowMage)
   * AJ10 Early (RealEngines by Alcentar)
   * AJ10 Mid (RealEngines by Alcentar)
-  * AJ10 Advanced (Alternate Apollo by McDouble)
+  * AJ10 Advanced (Bluedog Design by CobaltWolf)
   * BE-3 (NicheParts by MockingBird)
   * E-1 (Bluedog Design by CobaltWolf)
   * F-1 (SSTU by ShadowMage)
@@ -58,30 +60,38 @@ I understand that some of you may want these other versions of engines back, so 
   * J-2X (SSTU by ShadowMage)
   * LR101 (Bluedog Design by CobaltWolf)
   * LR105 (Bluedog Design by CobaltWolf)
-  * LR79 (US Rockets by RaiderNick)
+  * LR79 (Buedog Design by CobaltWolf)
+  * LR79/S-3 Vernier (Bluedog Design by CobaltWolf)
   * LR87 (US Rockets by RaiderNick)
   * LR91 (US Rockets by RaiderNick)
   * LR89 (Bluedog Design by CobaltWolf)
   * LR101 (Bluedog Design by CobaltWolf)
   * LR105 (Bluedog Design by CobaltWolf)
+  * M-1 (FASA by Frizzank)
+  * M-1 Sea Level (FASA by Frizzank)
   * Merlin Family (SSTU by ShadowMage)
   * NAA75-110 Redstone (RealEngines by Alcentar)
   * NK-33 (RealEngines by Alcentar)
   * NK-43 (RealEngines by Alcentar)
+  * ORM-65 (Custom Model by Basila)
   * RD-0105 (RealEngines by Alcentar, Model Edits by Pap and Blowfish)
   * RD-0110 (SSTU by ShadowMage)
   * RD-100 (RealEngines by Alcentar)
   * RD-107 (SSTU by ShadowMage)
   * RD-108 (SSTU by ShadowMage)
+  * RD-119 (Soviet Rockets by RaiderNick)
   * RD-170 (SSTU by ShadowMage)
   * RD-180 (SSTU by ShadowMage)
   * RD-191 (SSTU by ShadowMage)
+  * RD-214 (Soviet Rockets by RaiderNick)
+  * RD-216 (Soviet Rockets by RaiderNick)
   * RD-8 (RealEngines by Alcentar)
   * RD-58 (RealEngines by Alcentar)
   * RL10A-3 (SSTU by ShadowMage)
   * RL10A-4 (SSTU by ShadowMage)
   * RL10A-5 (SSTU by ShadowMage)
   * RL10B-2 (SSTU by ShadowMage)
+  * RL10C-1 (SSTU by ShadowMage, Model Edits by Pap)
   * RS-68 (SSTU by ShadowMage)
   * RS-25 SSME (SSTU by ShadowMage)
   * Rutherford (NicheParts by MockingBird)
@@ -91,6 +101,8 @@ I understand that some of you may want these other versions of engines back, so 
   * S2.253 (Modified RD-100 from RealEngines by Alcentar)
   * X-405 Vanguard (Bluedog Design by CobaltWolf)
   * X-405H Vega (Bluedog Design by CobaltWolf)
+  * XLR41 (RealEngines by Alcentar)
+  * XLR43 (RealEngines by Alcentar)
   
 * Solid Engines (19)
   * Aerobee Aerojet 1.8KS7800 (US Rockets by RaiderNick)
@@ -109,9 +121,10 @@ I understand that some of you may want these other versions of engines back, so 
   * Castor 2 (US Rockets by RaiderNick)
   * GCRC (US Rockets by RaiderNick)
   * Nike-M5E1 (Wrobz Sounding Rockets)
+  * SRMU (Bluedog Design by CobaltWolf)
   * Star-5D (NicheParts by MockingBird)
   * Star-8 (NicheParts by MockingBird)
-  * UA-1207 (US Rockets from RaiderNick)
+  * UA-1200 Series (Bluedog Design by CobaltWolf)
  
 * Small Maneuvering / Landing Engines (13)
   * R-4D / HiPAT (NicheParts by MockingBird)
@@ -129,13 +142,17 @@ I understand that some of you may want these other versions of engines back, so 
   * TD-339 (NicheParts by MockingBird)
   
 * Other Parts
+  * Agena D Equipment Rack (Bluedog Design by CobaltWolf)
   * Baby Sergeant 3x Decoupler (US Rockets by RaiderNick)
   * Baby Sergeant 11x Decoupler (US Rockets by RaiderNick)
+  * UA1200 Series Decoupler (Bluedog Design by CobaltWolf)
+  * UA1200 Series Nosecone and Separation Motor (Bluedog Design by CobaltWolf)
   
 * Launch Clamps
   * All from FASA which was originally created by Frizzank
 
 [link:patch-manager]:   https://forum.kerbalspaceprogram.com/index.php?/topic/163072-15-patchmanager/
+[link:ROLib]:           https://github.com/KSP-RO/ROLibrary
 [image:pm-icon]:        https://cdn.discordapp.com/attachments/329685702247841792/583494002205261834/unknown.png
 [image:pm-button]:      https://cdn.discordapp.com/attachments/329685702247841792/583493166963884033/unknown.png
 [image:pm-active]:		https://cdn.discordapp.com/attachments/329685702247841792/583493326267875328/unknown.png

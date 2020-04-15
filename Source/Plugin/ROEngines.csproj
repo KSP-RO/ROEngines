@@ -58,19 +58,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AnimState.cs" />
-    <Compile Include="AnimationModule.cs" />
-    <Compile Include="ROEModelConstraint.cs" />
-    <None Include="ModelData.cs.disabled" />
-    <None Include="ModelModule.cs.disabled" />
-    <Compile Include="ROELog.cs" />
-    <Compile Include="ROEExtensions.cs" />
-    <Compile Include="ROEUtil.cs" />
     <None Include="ROEEngineStatDisplay.cs.disabled" />
     <None Include="ROEEngineThrustCurveGUI.cs.disabled" />
     <None Include="ROEAnimateEngineHeat.cs.disabled" />
-    <Compile Include="ROEDeployableEngine.cs" />
-    <Compile Include="ROEStockInterop.cs" />
     <None Include="ThrustCurveEditorGUI - Original.cs.disabled" />
     <None Include="ROEProcSRB.cs.disabled" />
     <None Include="ThrustCurveEditorGUI.cs.disabled" />
