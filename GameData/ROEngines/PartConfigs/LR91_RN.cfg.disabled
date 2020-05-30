@@ -108,10 +108,3 @@ PART
 		enablePitch = false
 	}
 }
-@PART[ROE-LR91]:BEFORE[zzzTagCleanup]
-{
-	@MODULE[GeometryPartModule]
-	{
-		%forceUseColliders = True
-	}
-}

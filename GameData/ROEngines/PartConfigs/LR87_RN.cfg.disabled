@@ -89,10 +89,4 @@ PART
 		thrustTransformName = thrustTransform
 	}
 }
-@PART[ROE-LR87]:BEFORE[zzzTagCleanup]
-{
-	@MODULE[GeometryPartModule]
-	{
-		%forceUseColliders = True
-	}
-}
+
