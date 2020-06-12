@@ -1,3 +1,18 @@
+v1.6.0.0 -- 06/11/2020
+* Requires KSP 1.8+
+	* Added many BDB and RealEngines parts and model updates, plus an SSTU and Taerobee engine.
+	* Replaced RN models where suitable.
+	* Plume updates
+	* TexturesUnlimited updates
+	* Upscaled Juno 6K
+	* RS68 and BNTR Engines
+* Bugfixes:
+	* Castor Decouplers now work
+	* Removed inappropriate EngineConfigs from some Agena engines
+	* Fix RN LR87 and LR91 drag issue with FAR
+
+====================================================================================
+
 v1.5.0.0 -- 04/05/2020
 * Requires KSP 1.8+
 * New dependency on ROLib (https://github.com/KSP-RO/ROLibrary/releases)
