@@ -1,3 +1,71 @@
+v1.6.0.0 -- 06/11/2020
+* Requires KSP 1.8+
+	* Added many BDB and RealEngines parts and model updates, plus an SSTU and Taerobee engine.
+	* Replaced RN models where suitable.
+	* Plume updates
+	* TexturesUnlimited updates
+	* Upscaled Juno 6K
+	* RS68 and BNTR Engines
+* Bugfixes:
+	* Castor Decouplers now work
+	* Removed inappropriate EngineConfigs from some Agena engines
+	* Fix RN LR87 and LR91 drag issue with FAR
+
+====================================================================================
+
+v1.5.0.0 -- 04/05/2020
+* Requires KSP 1.8+
+* New dependency on ROLib (https://github.com/KSP-RO/ROLibrary/releases)
+* NEW ENGINES
+	* RD-0120 (RealEngines by Alcentar)
+	* RD-275 (RealEngines by Alcentar)
+	* Raptor and Raptor Vaccuum (RealEngines by Alcentar)
+	* NK9 and NK9 Vaccuum (RealEngines by Alcentar)
+	* XLR43 (RealEngines by Alcentar)
+	* ORM-65 (Custom Model by Basila)
+	* RL10C-1 (SSTU by ShadowMage, Model Edits by Pap)
+	* RD-211 (Soviet Rockets by RaiderNick)
+	* RD-215 (Soviet Rockets by RaiderNick)
+	* RD-109 (Soviet Rockets by RaiderNick)
+	* M-1 (FASA by Frizzank)
+	* AJ10 Advanced (Bluedog Design by CobaltWolf)
+	* Agena SPS (Bluedog Design by CobaltWolf)
+	* Agena 8096C (Bluedog Design by CobaltWolf)
+	* Juno 6K (Bluedog Design by CobaltWolf)
+	* Juno 45K (Bluedog Design by CobaltWolf)
+	* UA1200s (Bluedog Design by CobaltWolf)
+	* SRMU (Bluedog Design by CobaltWolf)
+* Other New Parts/Models
+	* UA1200 Series Decoupler (Bluedog Design by CobaltWolf)
+	* UA1200 Series Nosecone and Separation Motor (Bluedog Design by CobaltWolf)
+* Engine Model Updates
+	* LR79 (Bluedog Design by CobaltWolf)
+* Plume Updates (thanks lukecologne and Capkirk123)
+
+
+
+v1.4.0.0 - 11/14/2019
+=====================================================================================
+* Fix Gimbal Issues and look at constraints (thanks to Blowfish)
+* Fix Plume Issues (thanks to Blowfish)
+* Fixed the verniers on RD-0105
+* Fixed Gimbal Issues
+	* RD-58
+	* RD-8 (thanks fat-lobyte)
+	* NK33 (thanks fat-lobyte)
+	* NK43 (thanks fat-lobyte)
+	* AJ10 Advanced
+* Updated the Textures Unlimted shaders to the new versions
+* Added a whitelist for Restock (thanks Gordon-Dry)
+* Folder Restructuring
+* NEW ENGINES
+	* Merlin Family (SSTU by Shadowmage45)
+* Fixed the Aerobee solids from not being hidden in Patch Manager (thanks rsparkyc)
+* Fixed many plumes and textures (thanks gazpachian)
+* Made the MR104, PLE and S400 Pressure Fed (thanks gazpachian)
+
+
+
 v1.3.1.0 - 4/20/2019
 =====================================================================================
 * NEW ENGINES ADDED
