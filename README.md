@@ -117,6 +117,7 @@ I understand that some of you may want these other versions of engines back, so 
   * XLR11 (Taerobee by Beale and CobaltWolf)
   * XLR41 (RealEngines by Alcentar)
   * XLR43 (RealEngines by Alcentar)
+  * XLR99 (Changing History by Luci & TheBeastlyPig)
   
 * Solid Engines (19)
   * Aerobee Aerojet 1.8KS7800 (US Rockets by RaiderNick)
