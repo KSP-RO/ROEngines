@@ -1,0 +1,118 @@
+VARIABLES
+============================================
+
+currentVariant = srbType
+	* Segmented
+	* Smooth
+	* Upper
+	* Separator
+
+currentMount = nozzleType
+
+attitudeControl
+
+caseMaterial
+
+propellantType
+
+
+
+
+CALCULATIONS
+=============================================
+Cases
+	* Design Safety Factor (DSF)
+		* Varies from 1.1 (uncrewed) to 1.5 (crewed)
+	* MEOP = Maximum Expected Operating Pressure
+	* Design Assumptions
+		a) Failure criterion is defined as ultimate tensile failure
+		b) Ultimate tensile strength of the material is 
+	* Case Thickness
+		t = ((P*D) / (2 * S * e - P)) + C
+
+		t = case thickness
+		P = Max allowable working pressure (psi)
+		D = inside Diameter (in)
+		S = Max Allowable Tensile Stress (psi)
+		e = efficiency of welded joint
+		C = corrosion allowance
+	* Case Mass
+		t * pi * D * L * p + (pi / 4) * t * D^2 * p
+
+		t	= case thickness
+		pi	= 3.14159265359
+		D	= Diameter
+		L	= Length
+		p	= Material Density
+
+
+
+TYPES
+==========================================================
+* Segmented
+	* minDiameter = 2.0
+	* maxDiameter = 10.0
+	* segmentLength = 1.0 (1.0, 5.0)
+	* numSegments = 1.0 (1.0, 10.0)
+	* nozzleDiameter = 
+* Smooth
+	* minDiameter = 0.5
+	* maxDiameter = 10.0
+	* caseLength = 4.0 (2.0, 50.0)
+* Upper Stage
+	* minDiameter = 0.15
+	* maxDiameter = 3.0
+	* caseLength = 1.0 (0.5, 10.0)
+* Separator
+	* minDiameter = 0.05
+	* maxDiameter = 0.5
+	* caseLength = 0.75 (0.1, 4.0)
+
+
+
+
+NOZZLES
+* Vacuum
+* Angled
+
+* 1.04m Nozzle Throat is the maximum practical size for a 3.05m SRB
+
+
+
+
+ATTITUDE CONTROL
+* Gimbal Thrust Vector Control
+	* Shuttle SRB had this, Hydrazine power units that moved actuators for gimbal control
+	* Provides Pitch & Yaw (need 2 for Roll Control)
+	* Shuttle SRB
+		* Hydraulic Power Units x 2
+			* 22 lb of Hydrazine
+* Liquid Injection TVC
+	* TITAN used a Hydrazine Liquid Injection
+* Hypergolic RCS Thrusters
+	* Peacekeeper Missiles
+	* Ares
+
+
+
+
+CASES
+* Steel
+* Graphite Epoxy
+	* Shuttle SRB casing
+		* Steel Weight = 44,500 kg
+			* Insulation of 20,500 lbs
+		* GEM = 31,300 kg
+* Fiberglass
+* Titanium
+	* Compare STAR 26 and STAR 26B for the mass differences
+
+	
+	
+
+PROPELLANT
+* HTPB
+	* Castor IV -> Castor IVA was a 10% improvement due to HTPB alone
+
+
+

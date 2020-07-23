@@ -1,0 +1,25 @@
+﻿using System;
+using UnityEngine;
+using ROLib;
+//using KSPShaderTools;
+
+namespace ROEngines
+{
+    class ROEModularSRB : PartModule, IPartCostModifier, IPartMassModifier, IContainerVolumeContributor//, IRecolorable
+    {
+        #region KSPFields
+
+        [KSPField]
+        public float diameterLargeStep = 0.1f;
+
+        [KSPField]
+        public float diameterSmallStep = 0.1f;
+
+        [KSPField]
+        public float diameterSlideStep = 0.1f;
+
+
+        #endregion KSPFields
+
+    }
+}
