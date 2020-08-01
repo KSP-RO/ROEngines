@@ -1,6 +1,10 @@
-using System;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using UnityEngine;
+using ROLib;
 
 namespace ROEngines
 {
@@ -55,6 +59,9 @@ namespace ROEngines
         [KSPField(isPersistant = true)]
         public float currentHeat = 0;
 
+        [KSPField]
+        public bool useThrottle;
+
         int shaderEmissiveID;
 
         private ModuleEngines engineModule;
@@ -63,9 +70,12 @@ namespace ROEngines
 
         private Color emissiveColor = new Color(0f, 0f, 0f, 1f);
 
+        private Func<double> getSolverChamberTemp;
+
+        public bool useSolverEngines => getSolverChamberTemp != null;
+
         public override void OnAwake()
         {
-            base.OnAwake();
             heatDissipationCurve.Add(0f, 0.2f);
             heatDissipationCurve.Add(1f, 1f);
 
@@ -86,89 +96,108 @@ namespace ROEngines
 
         public override void OnStart(StartState state)
         {
-            base.OnStart(state);
-            initialize();
-        }
-
-        public void FixedUpdate()
-        {
-            if (!HighLogic.LoadedSceneIsFlight) { return; }
-            updateHeat();
-        }
-
-        private void initialize()
-        {
             locateAnimatedTransforms();
             locateEngineModule();
+            if(ROLModInterop.IsSolverEnginesInstalled() && !useThrottle)
+                locateSolverEngines();
+            else if (!ROLModInterop.IsSolverEnginesInstalled() && !useThrottle && HighLogic.LoadedSceneIsFlight)
+                StartCoroutine(updateHeatCalc());
         }
 
-        public void reInitialize()
+        public void Update()
         {
-            animatedRenderers = null;
-            engineModule = null;
-            initialize();
+            if (HighLogic.LoadedSceneIsFlight)
+                updateHeatAnim();
         }
 
         private void locateEngineModule()
         {
             engineModule = null;
-            ModuleEngines[] engines = part.GetComponents<ModuleEngines>();
-            int len = engines.Length;
-            for (int i = 0; i < len; i++)
-            {
-                if (engines[i].engineID == engineID)
-                {
-                    engineModule = engines[i];
-                }
-            }
+            engineModule = part.GetComponents<ModuleEngines>().FirstOrDefault(x => x.engineID == engineID);
             if (engineModule == null)
-            {
-                MonoBehaviour.print("ERROR: Could not locate engine by ID: " + engineID + " for part: " + part + " for SSTUAnimateEngineHeat.  This will cause errors during gameplay.  Setting engine to first engine module (if present)");
-                if (engines.Length > 0) { engineModule = engines[0]; }
-            }
+                MonoBehaviour.print("ERROR: Could not locate engine by ID: " + engineID + " for part: " + part +
+                                    " for ROEAnimateEngineHeat.  This will cause errors during gameplay.  Setting engine to first engine module (if present)");
+
+            engineModule ??= part.GetComponent<ModuleEngines>();
         }
 
         private void locateAnimatedTransforms()
         {
             List<Renderer> renderers = new List<Renderer>();
-            Transform[] animatedTransforms = part.transform.FindChildren(meshName);
-            int len = animatedTransforms.Length;
-            for (int i = 0; i < len; i++)
+            Transform[] animatedTransforms = part.transform.ROLFindChildren(meshName);
+            foreach (var animatedTransform in animatedTransforms)
             {
-                renderers.AddRange(animatedTransforms[i].GetComponentsInChildren<Renderer>(false));
+                renderers.AddRange(animatedTransform.GetComponentsInChildren<Renderer>(false));
             }
             animatedRenderers = renderers.ToArray();
             if (animatedRenderers == null || animatedRenderers.Length == 0) { print("ERROR: Could not locate any emissive meshes for name: " + meshName); }
         }
 
-        private void updateHeat()
+        private void locateSolverEngines()
+        {
+            if (ROLModInterop.getSolverEngineModule(part, engineID) is ModuleEngines solverEnginesModule)
+            {
+                MethodInfo getter = ROLModInterop.getSolverEngineTempProperty().GetGetMethod();
+
+                getSolverChamberTemp = (Func<double>) Delegate.CreateDelegate(typeof(Func<double>), solverEnginesModule, getter);
+            }
+        }
+
+        private IEnumerator updateHeatCalc()
+        {
+            while (true)
+            {
+                yield return new WaitForFixedUpdate();
+
+                //add heat from engine
+                if (engineModule.EngineIgnited && !engineModule.flameout && engineModule.currentThrottle > 0)
+                {
+                    float throttle = engineModule.currentThrottle;
+                    float heatIn = heatAccumulationCurve.Evaluate(throttle) * heatOutput * TimeWarp.fixedDeltaTime;
+                    currentHeat += heatIn;
+                }
+
+                //dissipate heat
+                float heatPercent = currentHeat / maxHeat;
+                if (currentHeat > 0f)
+                {
+                    float heatOut = heatDissipationCurve.Evaluate(heatPercent) * heatDissipation * TimeWarp.fixedDeltaTime;
+                    if (heatOut > currentHeat) { heatOut = currentHeat; }
+                    currentHeat -= heatOut;
+                }
+                if (currentHeat > maxStoredHeat) { currentHeat = maxStoredHeat; }
+            }
+        }
+
+        private void updateHeatAnim()
         {
             if (engineModule == null) { return; }
-            //add heat from engine
-            if (engineModule.EngineIgnited && !engineModule.flameout && engineModule.currentThrottle > 0)
-            {
-                float throttle = vessel.ctrlState.mainThrottle;
-                float heatIn = heatAccumulationCurve.Evaluate(throttle) * heatOutput * TimeWarp.fixedDeltaTime;
-                currentHeat += heatIn;
-            }
-
-            //dissipate heat
-            float heatPercent = currentHeat / maxHeat;
-            if (currentHeat > 0f)
-            {
-                float heatOut = heatDissipationCurve.Evaluate(heatPercent) * heatDissipation * TimeWarp.fixedDeltaTime;
-                if (heatOut > currentHeat) { heatOut = currentHeat; }
-                currentHeat -= heatOut;
-            }
-            if (currentHeat > maxStoredHeat) { currentHeat = maxStoredHeat; }
 
             float emissivePercent = 0f;
 
-            float mhd = maxHeat - draperPoint;
-            float chd = currentHeat - draperPoint;
+            if (!useThrottle && !useSolverEngines)
+            {
+                float mhd = maxHeat - draperPoint;
+                float chd = currentHeat - draperPoint;
 
-            if (chd < 0f) { chd = 0f; }
-            emissivePercent = chd / mhd;
+                if (chd < 0f) { chd = 0f; }
+                emissivePercent = chd / mhd;
+            }
+            else if (!useThrottle && useSolverEngines)
+            {
+                float mhd = maxHeat - draperPoint;
+                float chamberTemp = (float) getSolverChamberTemp();
+                float chd = chamberTemp - draperPoint;
+
+                if (chd < 0f) { chd = 0f; }
+                emissivePercent = chd / mhd;
+            }
+            else
+            {
+                emissivePercent = engineModule.currentThrottle;
+            }
+
+
             if (emissivePercent > 1f) { emissivePercent = 1f; }
             emissiveColor.r = redCurve.Evaluate(emissivePercent);
             emissiveColor.g = greenCurve.Evaluate(emissivePercent);
@@ -181,15 +210,14 @@ namespace ROEngines
             if (animatedRenderers != null)
             {
                 bool rebuild = false;
-                int len = animatedRenderers.Length;
-                for (int i = 0; i < len; i++)
+                foreach(var renderer in animatedRenderers)
                 {
-                    if (animatedRenderers[i] == null)
+                    if (renderer == null)
                     {
                         rebuild = true;
                         continue;
                     }
-                    animatedRenderers[i].sharedMaterial.SetColor(shaderEmissiveID, emissiveColor);
+                    renderer.sharedMaterial.SetColor(shaderEmissiveID, emissiveColor);
                 }
                 if (rebuild)
                 {
@@ -201,4 +229,3 @@ namespace ROEngines
 
     }
 }
-
