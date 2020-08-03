@@ -1,3 +1,14 @@
+v1.7.0.0 -- 
+* Requires KSP 1.8+
+* Updates:
+	* Moved the Source Data out of ROLib and created ROEngines.dll
+	* Added the RD 0110 Vernier Engine (RealEngines by Alcentar)
+	* Added the HG-3 Engine (SSTU J-2 Mesh by ShadowMage with Alterations by Katniss218)
+	* Added the XLR99 (Created by TheBeastlyPig)
+* Bugfixes:
+	* Fix TD-339 Gimbal
+	* Added missing textures and updated the Textures Unlimited file to stop Log Errors
+
 v1.6.0.0 -- 06/11/2020
 * Requires KSP 1.8+
 	* Added many BDB and RealEngines parts and model updates, plus an SSTU and Taerobee engine.
