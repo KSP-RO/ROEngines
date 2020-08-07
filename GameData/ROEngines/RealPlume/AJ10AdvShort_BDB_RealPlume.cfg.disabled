@@ -1,4 +1,4 @@
-@PART[ROE-AJ10AdvShort]:FOR[RealPlume]:NEEDS[SmokeScreen]
+@PART[ROE-AJ10AdvShort]:BEFORE[RealPlume]
 {
 	PLUME_TEMPLATE
 	{
