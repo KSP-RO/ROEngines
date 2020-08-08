@@ -4,17 +4,8 @@ PART
 	name = ROE-AJ10Adv
 	author = mcdouble, Pap
 	
-	category = Engine
-	subcategory = 0
 	RSSROConfig = true
-	RP0conf = true
-	
-	crashTolerance = 10
-	maxTemp = 673.15
-	skinTemp = 773.15
-	fuelCrossfeed = true
-	breakingForce = 10000
-	breakingTorque = 10000
+	ROESetEngineDefaults = LIQUID_ENGINE
 	
 	//  ============================================================================
 	//	Update Below
@@ -44,7 +35,7 @@ PART
 	node_stack_bottom = 0.0, -1.9834, 0.0, 0.0, -1.0, 0.0, 1
 	node_attach = 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 1
 	// stack, srfAttach, allowStack, allowSrfAttach, allowCollision
-	attachRules = 1,1,1,0,0	
+	attachRules = 1,1,1,0,0
 	
 	title = AJ10 Series (Adv)
 	manufacturer = Aerojet
@@ -53,13 +44,6 @@ PART
 	tags = aj10, aj, 10, aj-10, 138, aj10-138, transtage, 118, delta f, k, 118f, 118k
 	
 	engineType = AJ10_Adv
-	stagingIcon = LIQUID_ENGINE
-	stageOffset = 1
-    childStageOffset = 1
-	
-	TechRequired = unlockParts
-	cost = 150
-	entryCost = 1	
 	
 	//FX
 	fx_exhaustFlame_blue_small = 0.0, -21.0, 0.0, 0.0, 1.0, 0.0, running
@@ -80,9 +64,6 @@ PART
 	{
 		name = ModuleGimbal
 		gimbalTransformName = thrustTransform
-		gimbalRange = 4.25
-		useGimbalResponseSpeed = true
-		gimbalResponseSpeed = 9
 	}
 
 	// First ModuleGimbal animates the real model; this one
@@ -92,9 +73,6 @@ PART
 	{
 		name = ModuleGimbal
 		gimbalTransformName = newThrustTransform
-		gimbalRange = 4.25
-		useGimbalResponseSpeed = true
-		gimbalResponseSpeed = 9
 	}
 	
 	MODULE
@@ -136,5 +114,5 @@ PART
 			key = 0 0
 			key = 1 1
 		}
-    }
+	}
 }
