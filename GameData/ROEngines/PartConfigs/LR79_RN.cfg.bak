@@ -90,49 +90,49 @@ PART
 		thrustTransformName = thrustTransform
 	}
 	
-	MODULE:NEEDS[B9PartSwitch]
+	MODULE
 	{
 		name = ModuleB9DisableTransform
 		transform = Torus
 	}
 	
-	MODULE:NEEDS[B9PartSwitch]
+	MODULE
 	{
 		name = ModuleB9DisableTransform
 		transform = Cube
 	}
 	
-	MODULE:NEEDS[B9PartSwitch]
+	MODULE
 	{
 		name = ModuleB9DisableTransform
 		transform = Cube.001
 	}
 	
-	MODULE:NEEDS[B9PartSwitch]
+	MODULE
 	{
 		name = ModuleB9DisableTransform
 		transform = Engine_Nozzle.002
 	}
 	
-	MODULE:NEEDS[B9PartSwitch]
+	MODULE
 	{
 		name = ModuleB9DisableTransform
 		transform = Engine_Nozzle.004
 	}
 	
-	MODULE:NEEDS[B9PartSwitch]
+	MODULE
 	{
 		name = ModuleB9DisableTransform
 		transform = Engine_Nozzle.009
 	}
 	
-	MODULE:NEEDS[B9PartSwitch]
+	MODULE
 	{
 		name = ModuleB9DisableTransform
 		transform = Engine_Nozzle.010
 	}
 	
-	MODULE:NEEDS[B9PartSwitch]
+	MODULE
 	{
 		name = ModuleB9DisableTransform
 		transform = Engine_Nozzle.011
