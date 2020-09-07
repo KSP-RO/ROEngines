@@ -115,6 +115,7 @@ I understand that some of you may want these other versions of engines back, so 
   * X-405 Vanguard (Bluedog Design by CobaltWolf)
   * X-405H Vega (Bluedog Design by CobaltWolf)
   * XLR11 (Taerobee by Beale and CobaltWolf)
+  * XLR25 (Changing History by Luci & TheBeastlyPig)
   * XLR41 (RealEngines by Alcentar)
   * XLR43 (RealEngines by Alcentar)
   * XLR99 (Changing History by Luci & TheBeastlyPig)
