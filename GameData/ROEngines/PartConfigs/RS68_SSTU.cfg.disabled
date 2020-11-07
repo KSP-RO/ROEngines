@@ -75,6 +75,7 @@ PART
 		gimbalRangeYN = 15
 		gimbalRangeXP = 0
 		gimbalRangeXN = 0
+		enableRoll = true
 		enableYaw = false
 		enablePitch = false
 	}

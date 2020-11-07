@@ -104,6 +104,7 @@ I understand that some of you may want these other versions of engines back, so 
   * RL10A-5 (SSTU by ShadowMage)
   * RL10B-2 (SSTU by ShadowMage)
   * RL10C-1 (SSTU by ShadowMage, Model Edits by Pap)
+  * RS-68 (Bluedog Design by CobaltWolf)
   * RS-68 (SSTU by ShadowMage)
   * RS-68 Regen (Constellation Essentials by BahamutoD)
   * RS-25 SSME (SSTU by ShadowMage)
