@@ -101,6 +101,8 @@ I understand that some of you may want these other versions of engines back, so 
   * RD-58 (RealEngines by Alcentar)
   * RL10A-3 (SSTU by ShadowMage)
   * RL10A-4 (SSTU by ShadowMage)
+  * RL10A-4-2 (Bluedog Design by CobaltWolf)
+  * RL10A-4-2N (Bluedog Design by CobaltWolf)
   * RL10A-5 (SSTU by ShadowMage)
   * RL10B-2 (SSTU by ShadowMage)
   * RL10C-1 (SSTU by ShadowMage, Model Edits by Pap)
