@@ -52,6 +52,7 @@ I understand that some of you may want these other versions of engines back, so 
   * AJ10 Mid (RealEngines by Alcentar)
   * AJ10 Advanced (Bluedog Design by CobaltWolf)
   * BE-3 (NicheParts by MockingBird)
+  * BE-4 (Provenance Aerospace by DylanSemrau, Superpenguin160)
   * Bimodal NTR (Constellation Essentials by BahamutoD)
   * E-1 (Bluedog Design by CobaltWolf)
   * F-1 (SSTU by ShadowMage)
