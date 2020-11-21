@@ -4,17 +4,8 @@ PART
 	name = ROE-LR91
 	author = RaiderNick, Pap
 	
-	category = Engine
-	subcategory = 0
 	RSSROConfig = true
-	RP0conf = true
-	
-	crashTolerance = 10
-	maxTemp = 673.15
-	skinTemp = 773.15
-	fuelCrossfeed = true
-	breakingForce = 10000
-	breakingTorque = 10000
+	ROESetEngineDefaults = LIQUID_ENGINE
 	
 	//  ============================================================================
 	//	Update Below
@@ -38,7 +29,7 @@ PART
 	node_stack_bottom = 0.0, -2.43076, 0.0, 0.0, -1.0, 0.0, 2
 	node_attach = 0.0, 0.36855, 0.0, 0.0, 1.0, 0.0, 2
 	// stack, srfAttach, allowStack, allowSrfAttach, allowCollision
-	attachRules = 1,1,1,1,0	
+	attachRules = 1,1,1,1,0
 	
 	title = LR91 Series
 	manufacturer = Aerojet
@@ -47,13 +38,6 @@ PART
 	tags = titan, lr91, lr-91, lr, 91
 	
 	engineType = LR91
-	stagingIcon = LIQUID_ENGINE	
-	stageOffset = 1
-    childStageOffset = 1
-	
-	TechRequired = unlockParts
-	cost = 150
-	entryCost = 1
 	
 	MODULE
 	{
@@ -75,9 +59,6 @@ PART
 	{
 		name = ModuleGimbal
 		gimbalTransformName = gimbal
-		gimbalRange = 4
-		useGimbalResponseSpeed = true
-		gimbalResponseSpeed = 16
 	}
 	
 	MODULE
