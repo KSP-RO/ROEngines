@@ -12,14 +12,8 @@ PART
 	category = Engine
 	subcategory = 0
 	RSSROConfig = true
-	RP0conf = true
-	
-	crashTolerance = 10
-	maxTemp = 673.15
-	skinTemp = 773.15
-	fuelCrossfeed = true
-	breakingForce = 10000
-	breakingTorque = 10000
+	ROESetEngineDefaults = SOLID_BOOSTER
+
 	
 	//  ============================================================================
 	//	Update Below
@@ -38,7 +32,7 @@ PART
 	node_stack_side = 1.55165, 0.0, 0.0, 0.0, -1.0, 0.0, 2
 	node_attach = 1.55165, 0.0, 0.0, 1.0, 0.0, 0.0, 2
 	// stack, srfAttach, allowStack, allowSrfAttach, allowCollision
-	attachRules = 1,1,1,1,0	
+	attachRules = 1,1,1,1,0
 	
 	title = UA1207
 	manufacturer = United Technologies
@@ -47,9 +41,6 @@ PART
 	tags = ua1207, 120, 120-in, in, titan, iv, segment, solid, srb, radial, booster
 	
 	engineType = UA1207
-	stagingIcon = SOLID_BOOSTER
-	stageOffset = 1
-    childStageOffset = 1
 	
 	skinInternalConductionMult = 4.0
 	emissiveConstant = 0.5
@@ -57,13 +48,6 @@ PART
 	maximum_drag = 0.3
 	minimum_drag = 0.2
 	angularDrag = 2
-	breakingForce = 200
-	breakingTorque = 200
-	crashTolerance = 7
-	
-	TechRequired = unlockParts
-	cost = 150
-	entryCost = 1	
 	
 	MODULE
 	{
@@ -75,9 +59,6 @@ PART
 	{
 		name = ModuleGimbal
 		gimbalTransformName = gimbal
-		gimbalRange = 5
-		useGimbalResponseSpeed = true
-		gimbalResponseSpeed = 16
 	}
 	
 	MODULE
@@ -104,14 +85,7 @@ PART
 	category = Utility
 	subcategory = 0
 	RSSROConfig = true
-	RP0conf = true
-	
-	crashTolerance = 10
-	maxTemp = 673.15
-	skinTemp = 773.15
-	fuelCrossfeed = true
-	breakingForce = 10000
-	breakingTorque = 10000
+	ROESetEngineDefaults = SOLID_BOOSTER
 	
 	// --- FX definitions ---
 	fx_exhaustFlame_yellow_tiny = 0.0, -0.17, 0.163, 0.0, 1.0, 0.0, running
@@ -135,17 +109,13 @@ PART
 	rescaleFactor = 1.0
 	node_stack_bottom = 0.0, 0.0, 0.0, 0.0, -1.0, 0.0, 3
 	// stack, srfAttach, allowStack, allowSrfAttach, allowCollision
-	attachRules = 1,0,1,1,0	
+	attachRules = 1,0,1,1,0
 	
 	title = UA1207 Nosecone and Separator
 	manufacturer = United Technologies
 	description = The nosecone for the UA1207 Solid Rocket Motor with an integrated separation motor.
 	
 	tags = ua1207, 120, 120-in, in, titan, iv, separator, nosecone
-	
-	stagingIcon = SOLID_BOOSTER
-	stageOffset = 1
-    childStageOffset = 1
 	
 	mass = 0.25
 	
@@ -155,13 +125,6 @@ PART
 	maximum_drag = 0.3
 	minimum_drag = 0.2
 	angularDrag = 2
-	breakingForce = 200
-	breakingTorque = 200
-	crashTolerance = 7
-	
-	TechRequired = unlockParts
-	cost = 150
-	entryCost = 1	
 	
 	MODULE
 	{

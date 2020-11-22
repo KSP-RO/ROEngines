@@ -4,17 +4,8 @@ PART
 	name = ROE-LR79
 	author = RaiderNick, Pap
 	
-	category = Engine
-	subcategory = 0
 	RSSROConfig = true
-	RP0conf = true
-	
-	crashTolerance = 10
-	maxTemp = 673.15
-	skinTemp = 773.15
-	fuelCrossfeed = true
-	breakingForce = 10000
-	breakingTorque = 10000
+	ROESetEngineDefaults = LIQUID_ENGINE
 	
 	//  ============================================================================
 	//	Update Below
@@ -39,7 +30,7 @@ PART
 	node_stack_bottom = 0.0, -1.99163, 0.0, 0, -1, 0, 2
 	node_attach = 0.0, 1.25, 0.0, 0.0, 1.0, 0.0, 2
 	// stack, srfAttach, allowStack, allowSrfAttach, allowCollision
-	attachRules = 1,1,1,1,0	
+	attachRules = 1,1,1,1,0
 	
 	title = LR79 Series
 	manufacturer = Rocketdyne
@@ -48,13 +39,6 @@ PART
 	tags = jupiter, juno, thor, lr-79, lr79, lr, 79, delta, s-3, s-3d
 	
 	engineType = LR79
-	stagingIcon = LIQUID_ENGINE
-	stageOffset = 1
-    childStageOffset = 1
-	
-	TechRequired = unlockParts
-	cost = 150
-	entryCost = 1
 	
 	MODULE
 	{
@@ -66,9 +50,6 @@ PART
 	{
 		name = ModuleGimbal
 		gimbalTransformName = gimbal
-		gimbalRange = 8
-		useGimbalResponseSpeed = true
-		gimbalResponseSpeed = 16
 	}
 	
 	MODULE
