@@ -94,7 +94,7 @@ I understand that some of you may want these other versions of engines back, so 
   * RD-108 (SSTU by ShadowMage)
   * RD-119 (Soviet Rockets by RaiderNick)
   * RD-170 (SSTU by ShadowMage)
-  * RD-180 (SSTU by ShadowMage)
+  * RD-180 (Bluedog Design by CobaltWolf)
   * RD-191 (SSTU by ShadowMage)
   * RD-214 (Soviet Rockets by RaiderNick)
   * RD-216 (Soviet Rockets by RaiderNick)
