@@ -1,0 +1,29 @@
+//  ==================================================
+//  RD-180 engine plume setup.
+//  ==================================================
+
+@PART[ROE-RD180]:BEFORE[RealPlume]
+{
+    PLUME_TEMPLATE
+    {
+        name = Kerolox_LowerFlame
+        transformName = RD-180-ThrustTransform
+        scale = 0.93
+        offset = 1.45
+    }
+
+    @MODULE[ModuleEngines*]
+    {
+        %powerEffectName = Kerolox_LowerFlame
+        !runningEffectName = NULL
+        !fxOffset = NULL
+    }
+
+    @MODULE[ModuleEngineConfigs]
+    {
+        @CONFIG,*
+        {
+            %powerEffectName = Kerolox_LowerFlame
+        }
+    }
+}
