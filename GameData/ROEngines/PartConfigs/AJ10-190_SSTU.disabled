@@ -4,17 +4,8 @@ PART
 	name = ROE-AJ10-190
 	author = Shadowmage, Pap
 	
-	category = Engine
-	subcategory = 0
 	RSSROConfig = true
-	RP0conf = true
-	
-	crashTolerance = 10
-	maxTemp = 673.15
-	skinTemp = 773.15
-	fuelCrossfeed = true
-	breakingForce = 10000
-	breakingTorque = 10000
+	ROESetEngineDefaults = LIQUID_ENGINE
 	
 	//  ============================================================================
 	//	Update Below
@@ -34,7 +25,7 @@ PART
 	node_stack_bottom = 0,-1.902,0,0,-1,0,2
 	node_attach = 0,0,0,0,1,0,2
 	// stack, srfAttach, allowStack, allowSrfAttach, allowCollision
-	attachRules = 1,1,1,1,0	
+	attachRules = 1,1,1,1,0
 	
 	title = AJ10-190 Engine
 	manufacturer = Aerojet Rocketdyne
@@ -43,13 +34,6 @@ PART
 	tags = aj10, 190, shuttle, space, oms
 	
 	engineType = AJ10_190
-	stagingIcon = LIQUID_ENGINE
-	stageOffset = 1
-    childStageOffset = 1
-	
-	TechRequired = orbitalRocketry1981
-	cost = 400
-	entryCost = 8000
 	
 	MODULE
 	{
@@ -61,9 +45,6 @@ PART
 	{
 		name = ModuleGimbal
 		gimbalTransformName = AJ10-190-Gimbal
-		gimbalRange = 6
-		useGimbalResponseSpeed = true
-		gimbalResponseSpeed = 16
 	}
 	
 	MODULE
@@ -133,5 +114,4 @@ PART
 			pass = 1
 		}
 	}
-	
 }
