@@ -112,7 +112,7 @@ I understand that some of you may want these other versions of engines back, so 
   * RS-25 SSME (SSTU by ShadowMage)
   * Rutherford (NicheParts by MockingBird)
   * Rutherford Vacuum (NicheParts by MockingBird)
-  * RZ.20 (Bluedog Design by CobaltWolf)
+  * RZ.20 (CRE by Beale)
   * S5.92 (NicheParts by MockingBird)
   * S5.98M (NicheParts by MockingBird)
   * S2.253 (Modified RD-100 from RealEngines by Alcentar)
