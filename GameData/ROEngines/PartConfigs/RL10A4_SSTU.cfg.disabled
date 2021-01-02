@@ -137,6 +137,6 @@ PART
 	@MODULE[ModuleEngineConfigs]
 	{
 		@configuration = RL10A-4
-		!CONFIG[RL10A-4-2*],* {}
+		!CONFIG:HAS[~name[RL10A-4],~name[RL10A-4-1-2],~name[RL10A-3-3-Lunex]] {}
 	}
 }
