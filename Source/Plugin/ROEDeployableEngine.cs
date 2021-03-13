@@ -1,6 +1,7 @@
-﻿using System.Linq;
+﻿using ROLib;
+using System.Linq;
 
-namespace ROLib.Modules
+namespace ROEngines
 {
     /// <summary>
     /// This is the module that allows engines (like the RL10-B2) to deploy. This code is orignally written by
@@ -70,7 +71,7 @@ namespace ROLib.Modules
 
         public override void OnStartFinished(StartState state)
         {
-            engineModule = part.GetComponents<ModuleEnginesFX>().Where(x => x.engineID == engineID).FirstOrDefault();
+            engineModule = part.GetComponents<ModuleEnginesFX>().FirstOrDefault(x => x.engineID == engineID);
             if (engineModule == null)
             {
                 engineModule = part.GetComponents<ModuleEnginesFX>().FirstOrDefault();
