@@ -85,6 +85,7 @@ I understand that some of you may want these other versions of engines back, so 
   * NK-33 (RealEngines by Alcentar)
   * NK-43 (RealEngines by Alcentar)
   * ORM-65 (Custom Model by Basila)
+  * Ranger/Mariner Propulsion System (Bluedog Design by CobaltWolf)
   * RD-0105 (RealEngines by Alcentar, Model Edits by Pap and Blowfish)
   * RD-0110 (SSTU by ShadowMage)
   * RD-0120 (RealEngines by Alcentar)
