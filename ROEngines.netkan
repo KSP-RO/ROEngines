@@ -17,14 +17,15 @@
     ],
     "recommends" : [
         { "name" : "TexturesUnlimited" },
-		{ "name" : "ROCapsules" },
-		{ "name" : "ROTanks" },
+	{ "name" : "ROCapsules" },
+	{ "name" : "ROTanks" },
         { "name" : "ProceduralFairings" },
         { "name" : "ProceduralParts" },
         { "name" : "MechJeb2" },
         { "name" : "RealSolarSystem" },
         { "name" : "KSCSwitcher" },
-		{ "name" : "RP-0" }
+	{ "name" : "Waterfall" }, 
+	{ "name" : "RP-0" }
     ],
     "conflicts" :   [
         { "name" : "TweakableEverythingCont" }
