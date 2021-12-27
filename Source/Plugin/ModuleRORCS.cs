@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 using UnityEngine;
 using KSPShaderTools;
 using ROLib;
 using static ROLib.ROLLog;
-using Debug = UnityEngine.Debug;
 
 namespace ROEngines
 {
@@ -27,7 +24,7 @@ namespace ROEngines
         [KSPField(isPersistant = true, guiActiveEditor = true, groupDisplayName = GroupDisplayName, groupName = GroupName, guiName = "Scale"),
          UI_FloatEdit(sigFigs = 3, suppressEditorShipModified = true)]
         public float currentScale = 1f;
-        
+
         [KSPField(isPersistant = true, guiActiveEditor = true, groupName = GroupName, guiName = "Type"),
          UI_ChooseOption(suppressEditorShipModified = true)]
         public string currentType = "Default";
@@ -35,30 +32,30 @@ namespace ROEngines
         [KSPField(isPersistant = true, guiActiveEditor = true, groupName = GroupName, guiName = "RCS Model"),
          UI_ChooseOption(suppressEditorShipModified = true)]
         public string currentRCSModel = "Default";
-        
+
         [KSPField(isPersistant = true, guiActiveEditor = true, groupName = GroupName, guiName = "RCS Texture"),
          UI_ChooseOption(suppressEditorShipModified = true)]
         public string currentRCSModelTexture = "Default";
-        
+
         [KSPField(isPersistant = true, guiActiveEditor = true, groupName = GroupName, guiName = "Base"),
          UI_ChooseOption(suppressEditorShipModified = true)]
         public string currentBase = "Default";
-        
+
         [KSPField(isPersistant = true, guiActiveEditor = true, groupName = GroupName, guiName = "Base Texture"),
          UI_ChooseOption(suppressEditorShipModified = true)]
         public string currentBaseTexture = "Default";
-        
+
         [KSPField(isPersistant = true, guiActiveEditor = true, groupName = GroupName, guiName = "Layout"),
          UI_ChooseOption(suppressEditorShipModified = true)]
         public string currentLayout = "Default";
-        
+
         [KSPField(isPersistant = true, guiActiveEditor = true, guiName = "Thrust", guiFormat = "F4", guiUnits = "kN", groupName = GroupName)]
         public float currentThrust = 0.0f;
-        
+
         [KSPField(isPersistant = true)] public string rcsModelModulePersistentData = string.Empty;
         [KSPField(isPersistant = true)] public string baseModulePersistentData = string.Empty;
         [Persistent] public string configNodeData = string.Empty;
-        
+
         private bool initialized = false;
         private float modifiedMass = -1;
         private float modifiedCost = -1;
@@ -71,11 +68,11 @@ namespace ROEngines
         private Transform rcsModelRotatedRoot;
         private Transform rcsModelTransform;
         private ModuleRCSFX rcsfx;
-        
+
         public ROLDragCubeUpdater dragCubeUpdater;
-        
+
         private readonly Dictionary<string, ModelDefinitionVariantSet> variantSets = new Dictionary<string, ModelDefinitionVariantSet>();
-        
+
         private ModelDefinitionVariantSet GetVariantSet(string name)
         {
             if (!variantSets.TryGetValue(name, out ModelDefinitionVariantSet set))
@@ -85,10 +82,10 @@ namespace ROEngines
             }
             return set;
         }
-        
+
         internal ModelDefinitionLayoutOptions[] rcsModelDefs;
         internal ModelDefinitionLayoutOptions[] baseDefs;
-        
+
         internal void ModelChangedHandler(bool pushNodes)
         {
             UpdateModelScale();
@@ -132,7 +129,7 @@ namespace ROEngines
             rcsfx = part.GetComponent<ModuleRCSFX>();
             UpdateRCSThrust();
         }
-        
+
         private void OnEditorVesselModified(ShipConstruct ship) => UpdateAvailableVariants();
 
         // IPartMass/CostModifier overrides
@@ -140,7 +137,7 @@ namespace ROEngines
         public ModifierChangeWhen GetModuleCostChangeWhen() => ModifierChangeWhen.FIXED;
         public float GetModuleMass(float defaultMass, ModifierStagingSituation sit) => Mathf.Max(0, modifiedMass);
         public float GetModuleCost(float defaultCost, ModifierStagingSituation sit) => Mathf.Max(0, modifiedCost);
-        
+
         public string[] getSectionNames() => new string[] { "RCS Model", "Base" };
 
         public RecoloringData[] getSectionColors(string section)
@@ -173,7 +170,7 @@ namespace ROEngines
         {
             if (initialized) { return; }
             initialized = true;
-            
+
             debug($"Initialize(): dragCubeUpdater");
             dragCubeUpdater = new ROLDragCubeUpdater(part);
 
@@ -184,7 +181,7 @@ namespace ROEngines
                 baseRotatedRoot.NestToParent(part.transform.FindRecursive("model"));
                 baseRotatedRoot.Rotate(90, -90, 0);
             }
-            
+
             rcsModelRotatedRoot = part.transform.FindRecursive("RORCS-RCSModelRoot");
             if (rcsModelRotatedRoot == null)
             {
@@ -192,9 +189,9 @@ namespace ROEngines
                 rcsModelRotatedRoot.NestToParent(part.transform.FindRecursive("model"));
                 rcsModelRotatedRoot.Rotate(0, 0, 0);
             }
-            
+
             ConfigNode node = ROLConfigNodeUtils.ParseConfigNode(configNodeData);
-            
+
             List<ModelDefinitionLayoutOptions> rcsModelDefList = new List<ModelDefinitionLayoutOptions>();
             foreach (ConfigNode n in node.GetNodes("RCSMODEL"))
             {
@@ -218,7 +215,7 @@ namespace ROEngines
             rcsModelModule.setupModelList(rcsModelDefs);
             rcsModelModule.setupModel();
             rcsModelModule.updateSelections();
-            
+
             baseTransform = baseRotatedRoot.FindOrCreate("ModuleRORCS-BaseModel");
             baseModule = new ROLModelModule<ModuleRORCS>(part, this, baseTransform, ModelOrientation.CENTRAL, nameof(currentBase), nameof(currentLayout), nameof(currentBaseTexture), nameof(baseModulePersistentData))
             {
@@ -244,7 +241,7 @@ namespace ROEngines
             {
                 debug($"PM: {pm}");
             }
-            
+
             foreach (var pm in part.Modules)
             {
                 debug($"PML: {pm}");
@@ -270,16 +267,16 @@ namespace ROEngines
                 });
                 MonoUtilities.RefreshPartContextWindow(part);
             };
-            
+
             Fields[nameof(currentScale)].uiControlEditor.onFieldChanged =
             Fields[nameof(currentScale)].uiControlEditor.onSymmetryFieldChanged = OnModelSelectionChanged;
-            
+
             Fields[nameof(currentRCSModel)].uiControlEditor.onFieldChanged =
             Fields[nameof(currentRCSModel)].uiControlEditor.onSymmetryFieldChanged = OnModelSelectionChanged;
-            
+
             Fields[nameof(currentBase)].uiControlEditor.onFieldChanged =
             Fields[nameof(currentBase)].uiControlEditor.onSymmetryFieldChanged = OnModelSelectionChanged;
-            
+
             this.ROLupdateUIFloatEditControl(nameof(currentScale), minScale, maxScale, scaleLargeStep, scaleSmallStep, scaleSlideStep);
 
             Fields[nameof(currentScale)].guiActiveEditor = allowRescale;
@@ -298,7 +295,7 @@ namespace ROEngines
             rcsModelModule.SetPosition(0);
             rcsModelModule.SetScale(currentScale);
             rcsModelModule.UpdateModelScalesAndLayoutPositions();
-            
+
             baseModule.RescaleToDiameter(rcsModelModule.moduleDiameter, baseModule.definition.diameter, 0f);
             baseModule.SetPosition(rcsModelModule.ModuleBottom - baseModule.moduleHeight);
             baseModule.UpdateModelScalesAndLayoutPositions();
@@ -339,7 +336,7 @@ namespace ROEngines
                 ROLAttachNodeUtils.UpdateAttachNodePosition(part, bottomNode, pos, bottomNode.orientation, userInput, 0);
             }
         }
-        
+
         public void UpdateMass()
         {
             debug($"UpdateMass()");
@@ -351,9 +348,9 @@ namespace ROEngines
             debug($"UpdateCost()");
             modifiedCost = rcsCost;
         }
-        
+
         private void UpdateDragCubes() => dragCubeUpdater.Update();
-        
+
         public void OnModelSelectionChanged(BaseField f, object o)
         {
             debug($"OnModelSelectionChanged()");
@@ -362,20 +359,19 @@ namespace ROEngines
             ModelChangedHandler(true);
             MonoUtilities.RefreshPartContextWindow(part);
         }
-        
+
         public void UpdateAvailableVariants()
         {
             debug($"UpdateAvailableVariants()");
             rcsModelModule.updateSelections();
             baseModule.updateSelections();
         }
-        
+
         public void UpdateModelMeshes()
         {
             debug($"UpdateModelMeshes()");
             rcsModelModule.UpdateModelScalesAndLayoutPositions();
             baseModule.UpdateModelScalesAndLayoutPositions();
         }
-
     }
 }
