@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Reflection;
 using UnityEngine;
 using KSPShaderTools;
 using ROLib;
@@ -8,7 +10,7 @@ using static ROLib.ROLLog;
 namespace ROEngines
 {
     [SuppressMessage("ReSharper", "InvertIf")]
-    public class ModuleRORCS : PartModule, IPartCostModifier, IPartMassModifier, IRecolorable
+    public class ModuleRORCS : PartModule, IRecolorable
     {
         private const string GroupDisplayName = "RO-RCS";
         private const string GroupName = "ModuleRORCS";
@@ -49,9 +51,6 @@ namespace ROEngines
          UI_ChooseOption(suppressEditorShipModified = true)]
         public string currentLayout = "Default";
 
-        [KSPField(isPersistant = true, guiActiveEditor = true, guiName = "Thrust", guiFormat = "F4", guiUnits = "kN", groupName = GroupName)]
-        public float currentThrust = 0.0f;
-
         [KSPField(isPersistant = true)] public string rcsModelModulePersistentData = string.Empty;
         [KSPField(isPersistant = true)] public string baseModulePersistentData = string.Empty;
         [Persistent] public string configNodeData = string.Empty;
@@ -59,7 +58,6 @@ namespace ROEngines
         private bool initialized = false;
         private float modifiedMass = -1;
         private float modifiedCost = -1;
-        private float rcsThrust, rcsMass, rcsCost;
         internal ROLModelModule<ModuleRORCS> rcsModelModule;
         internal ROLModelModule<ModuleRORCS> baseModule;
 
@@ -67,9 +65,13 @@ namespace ROEngines
         private Transform baseTransform;
         private Transform rcsModelRotatedRoot;
         private Transform rcsModelTransform;
-        private ModuleRCSFX rcsfx;
 
-        public ROLDragCubeUpdater dragCubeUpdater;
+        private static MethodInfo MPEC_ApplyDynamicPatch;
+        private static MethodInfo MPEC_GetNonDynamicPatchedConfiguration;
+        private static bool reflectionInitialized = false;
+
+        private PartModule mpec;
+        private ModuleRCSFX rcsfx;
 
         private readonly Dictionary<string, ModelDefinitionVariantSet> variantSets = new Dictionary<string, ModelDefinitionVariantSet>();
 
@@ -93,9 +95,8 @@ namespace ROEngines
             UpdateAttachNodes(pushNodes);
             UpdateAvailableVariants();
             UpdateDragCubes();
-            UpdateRCSValues();
-            UpdateMass();
-            UpdateCost();
+            rcsModelModule.RenameRCSThrustTransforms(rcsThrustTransformName);
+            UpdateRCSModule();
             ROLStockInterop.UpdatePartHighlighting(part);
             if (HighLogic.LoadedSceneIsEditor)
                 GameEvents.onEditorShipModified.Fire(EditorLogic.fetch.ship);
@@ -120,23 +121,33 @@ namespace ROEngines
             Initialize();
         }
 
+        public override void OnStart(StartState state)
+        {
+            base.OnStart(state);
+            mpec = part.Modules["ModulePatchableEngineConfigs"];
+
+            if (!reflectionInitialized)
+            {
+                var mpecTy = Type.GetType("RealFuels.ModulePatchableEngineConfigs, RealFuels", true);
+                MPEC_ApplyDynamicPatch = mpecTy.GetMethod("ApplyDynamicPatch");
+                MPEC_GetNonDynamicPatchedConfiguration = mpecTy.GetMethod("GetNonDynamicPatchedConfiguration");
+
+                reflectionInitialized = true;
+            }
+        }
+
         public override void OnStartFinished(StartState state)
         {
             base.OnStartFinished(state);
+            rcsfx = part.GetComponent<ModuleRCSFX>();
             Initialize();
             ModelChangedHandler(false);
             InitializeUI();
-            rcsfx = part.GetComponent<ModuleRCSFX>();
-            UpdateRCSThrust();
         }
 
         private void OnEditorVesselModified(ShipConstruct ship) => UpdateAvailableVariants();
 
-        // IPartMass/CostModifier overrides
-        public ModifierChangeWhen GetModuleMassChangeWhen() => ModifierChangeWhen.FIXED;
-        public ModifierChangeWhen GetModuleCostChangeWhen() => ModifierChangeWhen.FIXED;
-        public float GetModuleMass(float defaultMass, ModifierStagingSituation sit) => Mathf.Max(0, modifiedMass);
-        public float GetModuleCost(float defaultCost, ModifierStagingSituation sit) => Mathf.Max(0, modifiedCost);
+        public void OnMPECDynamicPatchOverwritten() => UpdateRCSModule();
 
         public string[] getSectionNames() => new string[] { "RCS Model", "Base" };
 
@@ -172,7 +183,6 @@ namespace ROEngines
             initialized = true;
 
             debug($"Initialize(): dragCubeUpdater");
-            dragCubeUpdater = new ROLDragCubeUpdater(part);
 
             baseRotatedRoot = part.transform.FindRecursive("RORCS-BaseRoot");
             if (baseRotatedRoot == null)
@@ -229,23 +239,9 @@ namespace ROEngines
             baseModule.updateSelections();
 
             UpdateModelScale();
-            UpdateRCSValues();
-            UpdateMass();
-            UpdateCost();
+            UpdateRCSModule();
             rcsModelModule.RenameRCSThrustTransforms(rcsThrustTransformName);
             UpdateAttachNodes(false);
-
-            var pmlist = part.GetComponents<PartModule>();
-
-            foreach (var pm in pmlist)
-            {
-                debug($"PM: {pm}");
-            }
-
-            foreach (var pm in part.Modules)
-            {
-                debug($"PML: {pm}");
-            }
         }
 
         private void InitializeUI()
@@ -301,23 +297,27 @@ namespace ROEngines
             baseModule.UpdateModelScalesAndLayoutPositions();
         }
 
-        private void UpdateRCSValues()
+        private void UpdateRCSModule()
         {
-            debug($"UpdateRCSValues()");
-            ModelRCSModuleData data = rcsModelModule.layoutOptions.definition.rcsModuleData;
-            rcsThrust = data.GetThrust(rcsModelModule.moduleVerticalScale);
-            rcsMass = data.GetMass(rcsModelModule.moduleVerticalScale);
-            rcsCost = data.GetCost(rcsModelModule.moduleVerticalScale);
-        }
+            // Scaling factors based on RealismOverhaul/RO_SuggestedMods/RO_RCS_Config.cfg
+            // Note: It is assumed that a scale of 1 corresponds to a 1x RCS block
+            // Thrust: proportional to scale
+            // Mass: sqrt(thrust) / 4.5 * (nozzles + 0.5)
+            // Cost: sqrt(thrust) * nozzles
+            var numNozzles = rcsModelModule.definition.rcsModuleData.nozzles;
+            var thrustMult = currentScale;
+            var massMult = Mathf.Sqrt(currentScale) / 4.5f * (numNozzles + 0.5f);
+            var costMult = Mathf.Sqrt(currentScale) * numNozzles;
 
-        private void UpdateRCSThrust()
-        {
-            debug($"UpdateRCSThrust()");
-            rcsModelModule.RenameRCSThrustTransforms(rcsThrustTransformName);
-            if (rcsfx != null)
-            {
-                rcsfx.thrusterPower = rcsThrust;
-            }
+            var baseConfig = (ConfigNode)MPEC_GetNonDynamicPatchedConfiguration.Invoke(mpec, null);
+            var patch = new ConfigNode();
+            patch.AddValue("thrusterPower", thrustMult * baseConfig.GetFloatValue("thrusterPower"));
+            patch.AddValue("massMult", massMult * baseConfig.GetFloatValue("massMult", 1f));
+            if (baseConfig.HasValue("cost"))
+                patch.AddValue("cost", costMult * baseConfig.GetFloatValue("cost"));
+            MPEC_ApplyDynamicPatch.Invoke(mpec, new object[] { patch });
+
+            rcsModelModule.UpdateRCSModule(rcsfx);
         }
 
         private void UpdateAttachNodes(bool userInput)
@@ -337,19 +337,7 @@ namespace ROEngines
             }
         }
 
-        public void UpdateMass()
-        {
-            debug($"UpdateMass()");
-            modifiedMass = rcsMass;
-        }
-
-        public void UpdateCost()
-        {
-            debug($"UpdateCost()");
-            modifiedCost = rcsCost;
-        }
-
-        private void UpdateDragCubes() => dragCubeUpdater.Update();
+        private void UpdateDragCubes() => ROLModInterop.OnPartGeometryUpdate(part, true);
 
         public void OnModelSelectionChanged(BaseField f, object o)
         {
