@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
@@ -311,8 +311,7 @@ namespace ROEngines
             var patch = new ConfigNode();
             patch.AddValue("thrusterPower", thrustMult * baseConfig.GetFloatValue("thrusterPower"));
             patch.AddValue("massMult", massMult * baseConfig.GetFloatValue("massMult", 1f));
-            if (baseConfig.HasValue("cost"))
-                patch.AddValue("cost", costMult * baseConfig.GetFloatValue("cost"));
+            patch.AddValue("cost", costMult * baseConfig.GetFloatValue("cost", part.partInfo.cost));
             MPEC_ApplyDynamicPatch.Invoke(mpec, new object[] { patch });
 
             rcsModelModule.UpdateRCSModule(rcsfx);
