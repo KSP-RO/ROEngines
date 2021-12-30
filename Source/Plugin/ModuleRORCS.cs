@@ -5,7 +5,6 @@ using System.Reflection;
 using UnityEngine;
 using KSPShaderTools;
 using ROLib;
-using static ROLib.ROLLog;
 
 namespace ROEngines
 {
@@ -182,8 +181,6 @@ namespace ROEngines
             if (initialized) { return; }
             initialized = true;
 
-            debug($"Initialize(): dragCubeUpdater");
-
             baseRotatedRoot = part.transform.FindRecursive("RORCS-BaseRoot");
             if (baseRotatedRoot == null)
             {
@@ -287,7 +284,6 @@ namespace ROEngines
 
         private void UpdateModelScale()
         {
-            debug($"UpdateModelScale()");
             rcsModelModule.SetPosition(0);
             rcsModelModule.SetScale(currentScale);
             rcsModelModule.UpdateModelScalesAndLayoutPositions();
@@ -322,7 +318,6 @@ namespace ROEngines
 
         private void UpdateAttachNodes(bool userInput)
         {
-            debug($"UpdateAttachNodes()");
             float baseBottomZ = baseModule.ModuleBottom;
             Vector3 pos = new Vector3(-baseBottomZ, 0, 0);
             AttachNode srfNode = part.srfAttachNode;
@@ -341,7 +336,6 @@ namespace ROEngines
 
         public void OnModelSelectionChanged(BaseField f, object o)
         {
-            debug($"OnModelSelectionChanged()");
             if (f.name == Fields[nameof(currentRCSModel)].name) rcsModelModule.modelSelected(currentRCSModel);
             else if (f.name == Fields[nameof(currentBase)].name) baseModule.modelSelected(currentBase);
             ModelChangedHandler(true);
@@ -350,14 +344,12 @@ namespace ROEngines
 
         public void UpdateAvailableVariants()
         {
-            debug($"UpdateAvailableVariants()");
             rcsModelModule.updateSelections();
             baseModule.updateSelections();
         }
 
         public void UpdateModelMeshes()
         {
-            debug($"UpdateModelMeshes()");
             rcsModelModule.UpdateModelScalesAndLayoutPositions();
             baseModule.UpdateModelScalesAndLayoutPositions();
         }
