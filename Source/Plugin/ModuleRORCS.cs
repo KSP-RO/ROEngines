@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
@@ -295,6 +295,8 @@ namespace ROEngines
 
         private void UpdateRCSModule()
         {
+            if (!reflectionInitialized) return;
+
             // Scaling factors based on RealismOverhaul/RO_SuggestedMods/RO_RCS_Config.cfg
             // Note: It is assumed that a scale of 1 corresponds to a 1x RCS block
             // Thrust: proportional to scale
