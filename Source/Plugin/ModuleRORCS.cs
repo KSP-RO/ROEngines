@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
@@ -299,13 +299,13 @@ namespace ROEngines
 
             // Scaling factors based on RealismOverhaul/RO_SuggestedMods/RO_RCS_Config.cfg
             // Note: It is assumed that a scale of 1 corresponds to a 1x RCS block
-            // Thrust: proportional to scale
+            // Thrust: scale^2
             // Mass: sqrt(thrust) / 4.5 * (nozzles + 0.5)
             // Cost: sqrt(thrust) * nozzles
             var numNozzles = rcsModelModule.definition.rcsModuleData.nozzles;
-            var thrustMult = currentScale;
-            var massMult = Mathf.Sqrt(currentScale) / 4.5f * (numNozzles + 0.5f);
-            var costMult = Mathf.Sqrt(currentScale) * numNozzles;
+            var thrustMult = currentScale * currentScale;
+            var massMult = Mathf.Sqrt(thrustMult) / 4.5f * (numNozzles + 0.5f);
+            var costMult = Mathf.Sqrt(thrustMult) * numNozzles;
 
             var baseConfig = (ConfigNode)MPEC_GetNonDynamicPatchedConfiguration.Invoke(mpec, null);
             var patch = new ConfigNode();
