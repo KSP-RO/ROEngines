@@ -55,8 +55,6 @@ namespace ROEngines
         [Persistent] public string configNodeData = string.Empty;
 
         private bool initialized = false;
-        private float modifiedMass = -1;
-        private float modifiedCost = -1;
         internal ROLModelModule<ModuleRORCS> rcsModelModule;
         internal ROLModelModule<ModuleRORCS> baseModule;
 
@@ -296,6 +294,7 @@ namespace ROEngines
         private void UpdateRCSModule()
         {
             if (!reflectionInitialized) return;
+            if (mpec == null) return;
 
             // Scaling factors based on RealismOverhaul/RO_SuggestedMods/RO_RCS_Config.cfg
             // Note: It is assumed that a scale of 1 corresponds to a 1x RCS block
