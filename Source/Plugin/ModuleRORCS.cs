@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
@@ -146,7 +146,7 @@ namespace ROEngines
 
         private void OnEditorVesselModified(ShipConstruct ship) => UpdateAvailableVariants();
 
-        public void OnMPECDynamicPatchOverwritten() => UpdateRCSModule();
+        public void OnMPECDynamicPatchReset() => UpdateRCSModule();
 
         public string[] getSectionNames() => new string[] { "RCS Model", "Base" };
 
