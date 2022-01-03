@@ -94,6 +94,8 @@ I understand that some of you may want these other versions of engines back, so 
   * RD-0203 (RealEngines by Alcentar)
   * RD-0210 (RealEngines by Alcentar)
   * RD-0212 (RealEngines by Alcentar)
+  * RD-0213 (RealEngines by Alcentar)
+  * RD-0214 (RealEngines by Alcentar)
   * RD-100 (RealEngines by Alcentar)
   * RD-107 (SSTU by ShadowMage)
   * RD-108 (SSTU by ShadowMage)
