@@ -65,6 +65,7 @@ namespace ROEngines
 
         private static MethodInfo MPEC_ApplyDynamicPatch;
         private static MethodInfo MPEC_GetNonDynamicPatchedConfiguration;
+        private static MethodInfo MEC_RelocateRCSPawItems;
         private static bool reflectionInitialized = false;
 
         private PartModule mpec;
@@ -128,6 +129,7 @@ namespace ROEngines
                 var mpecTy = Type.GetType("RealFuels.ModulePatchableEngineConfigs, RealFuels", true);
                 MPEC_ApplyDynamicPatch = mpecTy.GetMethod("ApplyDynamicPatch");
                 MPEC_GetNonDynamicPatchedConfiguration = mpecTy.GetMethod("GetNonDynamicPatchedConfiguration");
+                MEC_RelocateRCSPawItems = Type.GetType("RealFuels.ModuleEngineConfigs, RealFuels", true).GetMethod("RelocateRCSPawItems");
 
                 reflectionInitialized = true;
             }
@@ -314,6 +316,9 @@ namespace ROEngines
             MPEC_ApplyDynamicPatch.Invoke(mpec, new object[] { patch });
 
             rcsModelModule.UpdateRCSModule(rcsfx);
+            // Must call this again since CommunityFixes overrides the relocation in the module's
+            // OnStart, which is called by UpdateRCSModule above.
+            MEC_RelocateRCSPawItems.Invoke(null, new object[] { rcsfx });
         }
 
         private void UpdateAttachNodes(bool userInput)
