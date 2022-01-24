@@ -123,6 +123,7 @@ namespace ROEngines
         {
             base.OnStart(state);
             mpec = part.Modules["ModulePatchableEngineConfigs"];
+            rcsfx = part.GetComponent<ModuleRCSFX>();
 
             if (!reflectionInitialized)
             {
@@ -138,7 +139,6 @@ namespace ROEngines
         public override void OnStartFinished(StartState state)
         {
             base.OnStartFinished(state);
-            rcsfx = part.GetComponent<ModuleRCSFX>();
             Initialize();
             ModelChangedHandler(false);
             InitializeUI();
@@ -296,7 +296,7 @@ namespace ROEngines
         private void UpdateRCSModule()
         {
             if (!reflectionInitialized) return;
-            if (mpec == null) return;
+            if (mpec == null || rcsfx == null || rcsModelModule == null) return;
 
             // Scaling factors based on RealismOverhaul/RO_SuggestedMods/RO_RCS_Config.cfg
             // Note: It is assumed that a scale of 1 corresponds to a 1x RCS block
