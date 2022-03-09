@@ -2,31 +2,31 @@
     "NAME"     : "ROEngines",
     "URL"      : "https://raw.githubusercontent.com/KSP-RO/ROEngines/master/GameData/ROEngines/ROEngines.version",
     "DOWNLOAD" : "https://github.com/KSP-RO/ROEngines/releases",
-    "HOMEPAGE"  : "https://github.com/KSP-RO/ROEngines/",
+    "HOMEPAGE" : "https://github.com/KSP-RO/ROEngines/",
     "GITHUB" : {
         "USERNAME"          : "KSP-RO",
         "REPOSITORY"        : "ROEngines",
         "ALLOW_PRE_RELEASE" : false
     },
-	"VERSION": {
-		"MAJOR": "1",
-		"MINOR": "6",
-		"PATCH": "0",
-		"BUILD": "0"
-	},
+    "VERSION": {
+        "MAJOR": "1",
+        "MINOR": "10",
+        "PATCH": "1",
+        "BUILD": "0"
+    },
     "KSP_VERSION" : {
         "MAJOR": "1",
         "MINOR": "8",
         "PATCH": "1"
     },
-	"KSP_VERSION_MIN": {
-		"MAJOR": "1",
-		"MINOR": "8",
-		"PATCH": "1"
-	},
-	"KSP_VERSION_MAX": {
-		"MAJOR": "1",
-		"MINOR": "9",
-		"PATCH": "99"
-	}
+    "KSP_VERSION_MIN": {
+      "MAJOR": "1",
+      "MINOR": "8",
+      "PATCH": "1"
+    },
+    "KSP_VERSION_MAX": {
+      "MAJOR": "1",
+      "MINOR": "12",
+      "PATCH": "99"
+    }
 }

@@ -44,6 +44,15 @@ Cases
 		D	= Diameter
 		L	= Length
 		p	= Material Density
+	* MAWP (Maximum Allowable Working Pressure)
+		P = (TS * t * E) / (R * SF)
+		
+		P = MAWP
+		TS = Tensile Strength (psi)
+		t = case thickness (in)
+		E = Efficiency of Weld
+		R = Interior Radius of Vessel (in)
+		SF = Safety Factor
 
 
 

@@ -5,9 +5,38 @@ v1.7.0.0 --
 	* Added the RD 0110 Vernier Engine (RealEngines by Alcentar)
 	* Added the HG-3 Engine (SSTU J-2 Mesh by ShadowMage with Alterations by Katniss218)
 	* Added the XLR99 (Created by TheBeastlyPig)
+	* Added LMDE and LMAE (RealEngines)
+	* Added nozzle glow to RS-25, RS-68, RL10 family, J2/J2X, RD0120, BE-3
+	* Added XLR25 (TheBeastlyPig)
+	* Added RD57 (Vodorod)
+	* Added Veronique and Viking
+	* Swapped F1 model to BDB (CobaltWolf)
+	* Added BE-4 (DylanSemrau)
+	* Swapped RD-180 to BDB (CobaltWolf)
+	* Added RL10 models from BDB (CobaltWolf)
+	* Added AJ60 from BDB (CobaltWolf)
+	* Added GEM solids from BDB (CobaltWolf)
+	* Added RD-200
+	* Added Dushkin S-155
+	* Added Stentor, Gamma-301, Gamma-2 and Gamma-8 from Commonwealth Rockets (CRE).
+	* Added the Rolls-Royce RZ engines
+	* Better Patching Consistency
+
 * Bugfixes:
 	* Fix TD-339 Gimbal
 	* Added missing textures and updated the Textures Unlimited file to stop Log Errors
+	* Fix RD109 Plume
+	* Fix Agena 8096C default config
+	* Fix clamp masses
+	* Fix AJ260 vernier gimbals
+	* ROLAnimateEngineHeat fixes
+	* Fix Raptor and other textures and plumes
+	* Fix RD-8 single-axis gimbal
+	* Fix RD-0110 vernier plume
+	* Don't disable ROCapsules engine parts
+	* Fix LR-101 staging icon
+	* Fix Agena 8096C gimbals
+	* Fix plumes on various models
 
 v1.6.0.0 -- 06/11/2020
 * Requires KSP 1.8+

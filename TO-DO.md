@@ -1,11 +1,11 @@
 
 PLUMES
 ===========================================
-RD-0105
+
 
 OTHER
 ===========================================
-* FINISH UA120X SERIES
+	
 
 
 
@@ -16,16 +16,13 @@ RP-0 ENGINE CONFIGS
 
 ROE PARTS
 ===========================================
+* Star 13 - bluedog_AIMP_Star13
+* Star 13A - bluedog_AIMP_Star13
+* Star 13B - bluedog_AIMP_Star13
+* TE-M-385 Star 13E Gemini Retro - bluedog_Gemini_RetroMotor
+* Star-37B - bluedog_UpperSolids_Star37BV
 
-ROE-RD0105-RN ===== ROE-RD0105-RE
 
 
 ROC PARTS
 ===========================================
-
-
-
-
-REAL ENGINES
-* Raptor
-* Raptor_Vacuum
