@@ -1,37 +1,40 @@
 # ROEngines
 
 ## What is it?
+
 ROEngines is a mod that takes the best versions of engine models available and uses them as the in-game models for Realism Overhaul parts. The duplicate engines that exist in Realism Overhaul are removed.
 
-
 ## Why is it needed?
+
 Historically, Realism Overhaul has been a mod that provides only config files that change the sizes and values of existing parts from stock and mods. This has allowed the mod to represent many different parts and engines that existed historically. Often, these models are only close approximation of what the real life engines look like. Other times, these models are not accurate at all and are only used in order to fill a niche that is needed.
 
 Duplicated parts are a common occurrance in Realism Overhaul. Players will often have multiple mods installed that will have the same engines configured. ROEngines fixes this problem by removing the duplicated engines and only representing a single version of the configured engine.
 
 Many players will typically install mods for specific engines. This can lead to very large installs with parts that are unwanted just to get certain engines. This will hopefully fix some of those problems by offering a single source for many engines.
 
-
 ## Who deserves the credit?
+
 All the modders that used their time and considerable skills to develop the models, animations and textures that you see represented in game. Each part that is included inlcudes reference to the original modder that created the part. In all situations I have respected the licenses (as far as I know) and where authors could be reached, I received permission to include them. If you find anything that you do not think should belong, please let me know and I will remove them.
 
-
 ## Dependencies
+
 * Module Manager
 * Realism Overhaul
 * B9PartSwitch
 * **[ROLibrary][link:ROLib]**
 
 These come bundled with the mod.
+
 * **[Patch Manager][link:patch-manager]**
 
-
 ## Where are my Parts!?
+
 ROEngines uses Module Manager and Patch Manager to remove the duplicated versions of the engines included in the mod. This way, you will only see one version of say an LR79, and it will be the version from ROEngines.
 
 I understand that some of you may want these other versions of engines back, so I have used the **[Patch Manager][link:patch-manager]** mod to make this very easy for you to manage. **[Patch Manager][link:patch-manager]** allows you to select which Module Manager patches are applied. So for each engine that is included in ROEngines, you can choose to keep, or remove the patch that will hide the other variants, and the great thing is that it is all done through the KSP interface, no config editing required.
 
-#### Using Patch Manager
+### Using Patch Manager
+
 1. Go to the Space Center screen and click the icon for Patch Manager ![][image:pm-icon]
 2. Inside the Window, click on the ROEngines button ![][image:pm-button]
 3. By default, all patches are active. Active patches are green. When these patches are active, it means that ONLY the ROEngines version of the engine will show in your game. All other versions of the same engine will be removed. ![][image:pm-active]
@@ -40,6 +43,7 @@ I understand that some of you may want these other versions of engines back, so 
 6. Use Patch Manager to shut down KSP, or click acknowledge and continue playing. Your patch will not be active until you restart KSP. ![][image:pm-restart]
 
 ## Parts Included
+
 * Liquid Engines (50+)
   * A-4 (RealEngines by Alcentar)
   * Aerobee (Taerobee by Beale & CobaltWolf)
@@ -133,7 +137,7 @@ I understand that some of you may want these other versions of engines back, so 
   * Viking-5 (Forgotten Real Engines by Zarbizaure)
   * X-405 Vanguard (Bluedog Design Bureau by CobaltWolf)
   * X-405H Vega (Bluedog Design Bureau by CobaltWolf)
-  * XLR11 (Taerobee by Beale & CobaltWolf)
+  * XLR11 (Astral Manufactures by Al2Me6)
   * XLR25 (CH-4 by Luci & TheBeastlyPig)
   * XLR41 (RealEngines by Alcentar)
   * XLR43 (RealEngines by Alcentar)
@@ -208,10 +212,10 @@ I understand that some of you may want these other versions of engines back, so 
 * Launch Clamps
   * All from FASA which was originally created by Frizzank
 
-[link:patch-manager]:   https://forum.kerbalspaceprogram.com/index.php?/topic/163072-15-patchmanager/
-[link:ROLib]:           https://github.com/KSP-RO/ROLibrary
-[image:pm-icon]:        https://cdn.discordapp.com/attachments/329685702247841792/583494002205261834/unknown.png
-[image:pm-button]:      https://cdn.discordapp.com/attachments/329685702247841792/583493166963884033/unknown.png
-[image:pm-active]:		https://cdn.discordapp.com/attachments/329685702247841792/583493326267875328/unknown.png
-[image:pm-disabled]:	https://cdn.discordapp.com/attachments/329685702247841792/583493507746889772/unknown.png
-[image:pm-restart]:		https://cdn.discordapp.com/attachments/329685702247841792/583493721148882956/unknown.png
+[link:patch-manager]: https://forum.kerbalspaceprogram.com/index.php?/topic/163072-15-patchmanager/
+[link:ROLib]:         https://github.com/KSP-RO/ROLibrary
+[image:pm-icon]:      https://cdn.discordapp.com/attachments/329685702247841792/583494002205261834/unknown.png
+[image:pm-button]:    https://cdn.discordapp.com/attachments/329685702247841792/583493166963884033/unknown.png
+[image:pm-active]:    https://cdn.discordapp.com/attachments/329685702247841792/583493326267875328/unknown.png
+[image:pm-disabled]:  https://cdn.discordapp.com/attachments/329685702247841792/583493507746889772/unknown.png
+[image:pm-restart]:   https://cdn.discordapp.com/attachments/329685702247841792/583493721148882956/unknown.png
