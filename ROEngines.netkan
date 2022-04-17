@@ -6,28 +6,28 @@
     "name"           : "ROEngines",
     "identifier"     : "ROEngines",
     "abstract"       : "ROEngines is a mod that takes the best versions of engine models available and uses them as the in-game models for Realism Overhaul parts.",
-	"author"     	 : "pap1723",
+    "author"         : "pap1723",
     "license"        : "CC BY-NC-ND 4.0",
     "release_status" : "stable",
     "depends" : [
         { "name" : "RealismOverhaul" },
         { "name" : "B9PartSwitch" },
-		{ "name" : "RealFuels" },
+        { "name" : "RealFuels" },
         { "name" : "PatchManager" }
     ],
     "recommends" : [
         { "name" : "TexturesUnlimited" },
-	{ "name" : "ROCapsules" },
-	{ "name" : "ROTanks" },
+        { "name" : "ROCapsules" },
+        { "name" : "ROTanks" },
         { "name" : "ProceduralFairings" },
         { "name" : "ProceduralParts" },
         { "name" : "MechJeb2" },
         { "name" : "RealSolarSystem" },
         { "name" : "KSCSwitcher" },
-	{ "name" : "Waterfall" }, 
-	{ "name" : "RP-0" }
+        { "name" : "Waterfall" },
+        { "name" : "RP-0" }
     ],
-    "conflicts" :   [
+    "conflicts" : [
         { "name" : "TweakableEverythingCont" }
     ],
     "install" : [

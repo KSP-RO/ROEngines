@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿#define CIBUILD_disabled
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
@@ -10,7 +11,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("ROEngines")]
-[assembly: AssemblyCopyright("Copyright © KSP-RO group 2021")]
+[assembly: AssemblyCopyright("Copyright © KSP-RO group 2022")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -32,5 +33,12 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0.0")]
+[assembly: AssemblyVersion("1.0.0.0")]    // Don't change for every release
+#if CIBUILD
+[assembly: AssemblyFileVersion("@MAJOR@.@MINOR@.@PATCH.@BUILD@")]
+#else
 [assembly: AssemblyFileVersion("1.10.0.0")]
+#endif
+
+[assembly: KSPAssembly("ROEngines", 1, 0)]
+//[assembly: KSPAssemblyDependency("ROLib", 1, 0)]  Uncomment at a later date when ROLib with KSPAssembly attribute has gotten a release or 2
