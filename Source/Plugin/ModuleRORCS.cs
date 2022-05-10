@@ -63,12 +63,12 @@ namespace ROEngines
         private Transform rcsModelRotatedRoot;
         private Transform rcsModelTransform;
 
-        private static MethodInfo MPEC_ApplyDynamicPatch;
-        private static MethodInfo MPEC_GetNonDynamicPatchedConfiguration;
+        private static MethodInfo MEC_ApplyDynamicPatch;
+        private static MethodInfo MEC_GetNonDynamicPatchedConfiguration;
         private static MethodInfo MEC_RelocateRCSPawItems;
         private static bool reflectionInitialized = false;
 
-        private PartModule mpec;
+        private PartModule mec;
         private ModuleRCSFX rcsfx;
 
         private readonly Dictionary<string, ModelDefinitionVariantSet> variantSets = new Dictionary<string, ModelDefinitionVariantSet>();
@@ -122,14 +122,14 @@ namespace ROEngines
         public override void OnStart(StartState state)
         {
             base.OnStart(state);
-            mpec = part.Modules["ModulePatchableEngineConfigs"];
+            mec = part.Modules["ModuleEngineConfigs"];
             rcsfx = part.GetComponent<ModuleRCSFX>();
 
             if (!reflectionInitialized)
             {
-                var mpecTy = Type.GetType("RealFuels.ModulePatchableEngineConfigs, RealFuels", true);
-                MPEC_ApplyDynamicPatch = mpecTy.GetMethod("ApplyDynamicPatch");
-                MPEC_GetNonDynamicPatchedConfiguration = mpecTy.GetMethod("GetNonDynamicPatchedConfiguration");
+                var mecTy = Type.GetType("RealFuels.ModuleEngineConfigs, RealFuels", true);
+                MEC_ApplyDynamicPatch = mecTy.GetMethod("ApplyDynamicPatch");
+                MEC_GetNonDynamicPatchedConfiguration = mecTy.GetMethod("GetNonDynamicPatchedConfiguration");
                 MEC_RelocateRCSPawItems = Type.GetType("RealFuels.ModuleEngineConfigs, RealFuels", true).GetMethod("RelocateRCSPawItems");
 
                 reflectionInitialized = true;
@@ -146,7 +146,7 @@ namespace ROEngines
 
         private void OnEditorVesselModified(ShipConstruct ship) => UpdateAvailableVariants();
 
-        public void OnMPECDynamicPatchReset() => UpdateRCSModule();
+        public void OnMECDynamicPatchReset() => UpdateRCSModule();
 
         public string[] getSectionNames() => new string[] { "RCS Model", "Base" };
 
@@ -296,7 +296,7 @@ namespace ROEngines
         private void UpdateRCSModule()
         {
             if (!reflectionInitialized) return;
-            if (mpec == null || rcsfx == null || rcsModelModule == null) return;
+            if (mec == null || rcsfx == null || rcsModelModule == null) return;
 
             // Scaling factors based on RealismOverhaul/RO_SuggestedMods/RO_RCS_Config.cfg
             // Note: It is assumed that a scale of 1 corresponds to a 1x RCS block
@@ -308,12 +308,12 @@ namespace ROEngines
             var massMult = Mathf.Sqrt(thrustMult) / 4.5f * (numNozzles + 0.5f);
             var costMult = Mathf.Sqrt(thrustMult) * numNozzles;
 
-            var baseConfig = (ConfigNode)MPEC_GetNonDynamicPatchedConfiguration.Invoke(mpec, null);
+            var baseConfig = (ConfigNode)MEC_GetNonDynamicPatchedConfiguration.Invoke(mec, null);
             var patch = new ConfigNode();
             patch.AddValue("thrusterPower", thrustMult * baseConfig.GetFloatValue("thrusterPower"));
             patch.AddValue("massMult", massMult * baseConfig.GetFloatValue("massMult", 1f));
             patch.AddValue("cost", costMult * baseConfig.GetFloatValue("cost", part.partInfo.cost));
-            MPEC_ApplyDynamicPatch.Invoke(mpec, new object[] { patch });
+            MEC_ApplyDynamicPatch.Invoke(mec, new object[] { patch });
 
             rcsModelModule.UpdateRCSModule(rcsfx);
             // Must call this again since CommunityFixes overrides the relocation in the module's
