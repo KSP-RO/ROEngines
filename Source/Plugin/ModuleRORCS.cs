@@ -315,7 +315,6 @@ namespace ROEngines
             patch.AddValue("cost", costMult * baseConfig.GetFloatValue("cost", part.partInfo.cost));
             MEC_ApplyDynamicPatch.Invoke(mec, new object[] { patch });
 
-            rcsModelModule.UpdateRCSModule(rcsfx);
             // Must call this again since CommunityFixes overrides the relocation in the module's
             // OnStart, which is called by UpdateRCSModule above.
             MEC_RelocateRCSPawItems.Invoke(null, new object[] { rcsfx });
