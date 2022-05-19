@@ -285,7 +285,8 @@ namespace ROEngines
         private void UpdateModelScale()
         {
             rcsModelModule.SetPosition(0);
-            rcsModelModule.SetScale(currentScale);
+            var inputScale = rcsModelModule.definition.rcsModuleData.modelScale;
+            rcsModelModule.SetScale(currentScale / inputScale);
             rcsModelModule.UpdateModelScalesAndLayoutPositions();
 
             baseModule.RescaleToDiameter(rcsModelModule.moduleDiameter, baseModule.definition.diameter, 0f);
@@ -294,7 +295,7 @@ namespace ROEngines
         }
 
         private void UpdateRCSModule()
-        {
+        {            
             if (!reflectionInitialized) return;
             if (mec == null || rcsfx == null || rcsModelModule == null) return;
 
@@ -302,12 +303,12 @@ namespace ROEngines
             // Note: It is assumed that a scale of 1 corresponds to a 1x RCS block
             // Thrust: scale^2
             // Mass: sqrt(thrust) / 4.5 * (nozzles + 0.5)
-            // Cost: sqrt(thrust) * nozzles
+            // Cost: sqrt(thrust) * nozzles            
             var numNozzles = rcsModelModule.definition.rcsModuleData.nozzles;
             var thrustMult = currentScale * currentScale;
             var massMult = Mathf.Sqrt(thrustMult) / 4.5f * (numNozzles + 0.5f);
             var costMult = Mathf.Sqrt(thrustMult) * numNozzles;
-
+            
             var baseConfig = (ConfigNode)MEC_GetNonDynamicPatchedConfiguration.Invoke(mec, null);
             var patch = new ConfigNode();
             patch.AddValue("thrusterPower", thrustMult * baseConfig.GetFloatValue("thrusterPower"));
@@ -315,9 +316,11 @@ namespace ROEngines
             patch.AddValue("cost", costMult * baseConfig.GetFloatValue("cost", part.partInfo.cost));
             MEC_ApplyDynamicPatch.Invoke(mec, new object[] { patch });
 
+            OnStart(PartModule.StartState.Flying);
+
             // Must call this again since CommunityFixes overrides the relocation in the module's
             // OnStart, which is called by UpdateRCSModule above.
-            MEC_RelocateRCSPawItems.Invoke(null, new object[] { rcsfx });
+            //MEC_RelocateRCSPawItems.Invoke(mec, new object[] { rcsfx });
         }
 
         private void UpdateAttachNodes(bool userInput)
