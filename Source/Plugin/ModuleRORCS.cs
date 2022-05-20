@@ -96,8 +96,8 @@ namespace ROEngines
             rcsModelModule.RenameRCSThrustTransforms(rcsThrustTransformName);
             UpdateRCSModule();
             ROLStockInterop.UpdatePartHighlighting(part);
-            if (HighLogic.LoadedSceneIsEditor)
-                GameEvents.onEditorShipModified.Fire(EditorLogic.fetch.ship);
+            //if (HighLogic.LoadedSceneIsEditor)
+                //GameEvents.onEditorShipModified.Fire(EditorLogic.fetch.ship);
         }
 
         internal void ModelChangedHandlerWithSymmetry(bool pushNodes, bool symmetry)
@@ -144,7 +144,7 @@ namespace ROEngines
             InitializeUI();
         }
 
-        private void OnEditorVesselModified(ShipConstruct ship) => UpdateAvailableVariants();
+        //private void OnEditorVesselModified(ShipConstruct ship) => UpdateAvailableVariants();
 
         public void OnMECDynamicPatchReset() => UpdateRCSModule();
 
@@ -278,8 +278,8 @@ namespace ROEngines
             Fields[nameof(currentRCSModelTexture)].uiControlEditor.onFieldChanged = rcsModelModule.textureSetSelected;
             Fields[nameof(currentBaseTexture)].uiControlEditor.onFieldChanged = baseModule.textureSetSelected;
 
-            if (HighLogic.LoadedSceneIsEditor)
-                GameEvents.onEditorShipModified.Add(OnEditorVesselModified);
+            //if (HighLogic.LoadedSceneIsEditor)
+                //GameEvents.onEditorShipModified.Add(OnEditorVesselModified);
         }
 
         private void UpdateModelScale()
@@ -295,7 +295,7 @@ namespace ROEngines
         }
 
         private void UpdateRCSModule()
-        {            
+        {
             if (!reflectionInitialized) return;
             if (mec == null || rcsfx == null || rcsModelModule == null) return;
 
@@ -315,12 +315,6 @@ namespace ROEngines
             patch.AddValue("massMult", massMult * baseConfig.GetFloatValue("massMult", 1f));
             patch.AddValue("cost", costMult * baseConfig.GetFloatValue("cost", part.partInfo.cost));
             MEC_ApplyDynamicPatch.Invoke(mec, new object[] { patch });
-
-            OnStart(PartModule.StartState.Flying);
-
-            // Must call this again since CommunityFixes overrides the relocation in the module's
-            // OnStart, which is called by UpdateRCSModule above.
-            //MEC_RelocateRCSPawItems.Invoke(mec, new object[] { rcsfx });
         }
 
         private void UpdateAttachNodes(bool userInput)
