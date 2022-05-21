@@ -110,6 +110,8 @@ I understand that some of you may want these other versions of engines back, so 
   * RD-191 (SSTU by ShadowMage)
   * RD-214 (Soviet Rockets by RaiderNick)
   * RD-216 (Soviet Rockets by RaiderNick)
+  * RD-253/275 (RealEngines by Alcentar)
+  * RD-254 (RealEngines by Alcentar)
   * RD-270/270M (CH-4 by Luci & TheBeastlyPig)
   * RD-8 (RealEngines by Alcentar)
   * RD-58 (RealEngines by Alcentar)
