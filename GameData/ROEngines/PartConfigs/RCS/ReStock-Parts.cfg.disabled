@@ -1,0 +1,60 @@
+@PART[ROE-ModularRCS]:NEEDS[ReStock]:AFTER[ROEngines]
+{
+	@MODULE[ModuleRORCS]
+	{
+		@RCSMODEL:HAS[#variant[1*]]
+		{
+			model = RCS-ReStock-1
+			model = RCS-ReStock-1-Bare
+			model = RCS-ReStock-1-Mini
+			model = RCS-ReStock-1-Mini-Shroud
+			model = RCS-ReStock-Vernier
+		}
+		@RCSMODEL:HAS[#variant[2*]]
+		{
+			model = RCS-ReStock-2
+			model = RCS-ReStock-2-Mini
+		}
+		@RCSMODEL:HAS[#variant[3*]]
+		{
+			model = RCS-ReStock-3
+			model = RCS-ReStock-3-Mini
+		}
+		@RCSMODEL:HAS[#variant[4*]]
+		{
+			model = RCS-ReStock-4
+			model = RCS-ReStock-4-Mini
+			model = RCS-ReStock-4A
+			model = RCS-ReStock-4A-Mini
+		}
+		@RCSMODEL:HAS[#variant[5*]]
+		{
+			model = RCS-ReStock-5
+			model = RCS-ReStock-5-Mini
+		}
+	}
+}
+
+@PART[ROE-ModularRCS]:NEEDS[ReStock]:FOR[ROEngines]
+{
+	MODULE
+	{
+		name = ModuleRestockDepthMask
+		maskTransform = RCSMask
+	}
+	MODULE
+	{
+		name = ModuleRestockDepthMask
+		maskTransform = 1Mask
+	}
+	MODULE
+	{
+		name = ModuleRestockDepthMask
+		maskTransform = 1MaskShroud
+	}
+	MODULE
+	{
+		name = ModuleRestockDepthMask
+		maskTransform = VernorMask
+	}
+}
