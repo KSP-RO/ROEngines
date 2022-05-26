@@ -285,8 +285,7 @@ namespace ROEngines
         private void UpdateModelScale()
         {
             rcsModelModule.SetPosition(0);
-            var inputScale = rcsModelModule.definition.rcsModuleData.modelScale;
-            rcsModelModule.SetScale(currentScale / inputScale);
+            rcsModelModule.SetScale(currentScale);
             rcsModelModule.UpdateModelScalesAndLayoutPositions();
 
             baseModule.RescaleToDiameter(rcsModelModule.moduleDiameter, baseModule.definition.diameter, 0f);
