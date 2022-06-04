@@ -65,7 +65,6 @@ namespace ROEngines
 
         private static MethodInfo MEC_ApplyDynamicPatch;
         private static MethodInfo MEC_GetNonDynamicPatchedConfiguration;
-        private static MethodInfo MEC_RelocateRCSPawItems;
         private static bool reflectionInitialized = false;
 
         private PartModule mec;
@@ -130,7 +129,6 @@ namespace ROEngines
                 var mecTy = Type.GetType("RealFuels.ModuleEngineConfigs, RealFuels", true);
                 MEC_ApplyDynamicPatch = mecTy.GetMethod("ApplyDynamicPatch");
                 MEC_GetNonDynamicPatchedConfiguration = mecTy.GetMethod("GetNonDynamicPatchedConfiguration");
-                MEC_RelocateRCSPawItems = Type.GetType("RealFuels.ModuleEngineConfigs, RealFuels", true).GetMethod("RelocateRCSPawItems");
 
                 reflectionInitialized = true;
             }
@@ -298,16 +296,18 @@ namespace ROEngines
             if (!reflectionInitialized) return;
             if (mec == null || rcsfx == null || rcsModelModule == null) return;
 
+            typeof(ModuleRCS).GetMethod("FindThrusters", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(rcsfx, null);
+
             // Scaling factors based on RealismOverhaul/RO_SuggestedMods/RO_RCS_Config.cfg
             // Note: It is assumed that a scale of 1 corresponds to a 1x RCS block
             // Thrust: scale^2
             // Mass: sqrt(thrust) / 4.5 * (nozzles + 0.5)
-            // Cost: sqrt(thrust) * nozzles            
+            // Cost: sqrt(thrust) * nozzles
             var numNozzles = rcsModelModule.definition.rcsModuleData.nozzles;
             var thrustMult = currentScale * currentScale;
             var massMult = Mathf.Sqrt(thrustMult) / 4.5f * (numNozzles + 0.5f);
             var costMult = Mathf.Sqrt(thrustMult) * numNozzles;
-            
+
             var baseConfig = (ConfigNode)MEC_GetNonDynamicPatchedConfiguration.Invoke(mec, null);
             var patch = new ConfigNode();
             patch.AddValue("thrusterPower", thrustMult * baseConfig.GetFloatValue("thrusterPower"));
