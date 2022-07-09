@@ -65,6 +65,7 @@ I understand that some of you may want these other versions of engines back, so 
   * Gamma-301 (CRE by Beale)
   * H-1C (Bluedog Design Bureau by CobaltWolf)
   * H-1D (Bluedog Design Bureau by CobaltWolf)
+  * HM7 (Astral Manufactures by Al2Me6)
   * J-2, J-2S (Bluedog Design Bureau by CobaltWolf)
   * J-2T (Bluedog Design Bureau by CobaltWolf)
   * J-2X (SSTU by ShadowMage)
