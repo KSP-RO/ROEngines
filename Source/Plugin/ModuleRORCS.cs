@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
@@ -234,7 +234,6 @@ namespace ROEngines
             baseModule.updateSelections();
 
             UpdateModelScale();
-            UpdateRCSModule();
             rcsModelModule.RenameRCSThrustTransforms(rcsThrustTransformName);
             UpdateAttachNodes(false);
         }
