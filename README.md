@@ -69,6 +69,8 @@ I understand that some of you may want these other versions of engines back, so 
   * J-2, J-2S (Bluedog Design Bureau by CobaltWolf)
   * J-2T (Bluedog Design Bureau by CobaltWolf)
   * J-2X (SSTU by ShadowMage)
+  * LE-5 (Forgotten Real Engines by Zarbizaure)
+  * LE-7 (Forgotten Real Engines by Zarbizaure)
   * LMAE (RealEngines by Alcentar)
   * LMDE (RealEngines by Alcentar); TR-201 (Bluedog Design Bureau by CobaltWolf)
   * LR101 (Bluedog Design Bureau by CobaltWolf)
