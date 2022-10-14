@@ -48,7 +48,7 @@ I understand that some of you may want these other versions of engines back, so 
   * A-4 (RealEngines by Alcentar)
   * Aerobee (Taerobee by Beale & CobaltWolf)
   * Agena (Bluedog Design Bureau by CobaltWolf)
-  * AJ10-137 (Apollo by DECQ)
+  * AJ10-137 (Bluedog Design Bureau by CobaltWolf)
   * AJ10-190 (SSTU by ShadowMage)
   * AJ10 Early (RealEngines by Alcentar)
   * AJ10 Mid (RealEngines by Alcentar)
