@@ -187,6 +187,7 @@ I understand that some of you may want these other versions of engines back, so 
   * GEM63 (Bluedog Design Bureau by CobaltWolf)
   * Nike-M5E1 (Wrobz Sounding Rockets)
   * SRMU (Bluedog Design Bureau by CobaltWolf)
+  * R-103 Booster (US Rockets by RaiderNick)
   * Star-5D (NicheParts by MockingBird)
   * Star-8 (NicheParts by MockingBird)
   * Star-37 (Bluedog Design Bureau by CobaltWolf)
