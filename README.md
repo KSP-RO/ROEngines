@@ -153,6 +153,7 @@ I understand that some of you may want these other versions of engines back, so 
   * Viking-5 (Forgotten Real Engines by Zarbizaure)
   * X-405 Vanguard (Bluedog Design Bureau by CobaltWolf)
   * X-405H Vega (Bluedog Design Bureau by CobaltWolf)
+  *	XLR10 (Custom model by CobaltWolf)
   * XLR11 (Astral Manufactures by Al2Me6)
   * XLR25 (CH-4 by Luci & TheBeastlyPig)
   * XLR41 (RealEngines by Alcentar)
