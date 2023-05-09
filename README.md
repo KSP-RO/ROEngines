@@ -115,6 +115,7 @@ I understand that some of you may want these other versions of engines back, so 
   * RD-100 (RealEngines by Alcentar)
   * RD-107 (RealEngines by Alcentar)
   * RD-108 (RealEngines by Alcentar)
+  * RD-111 (Custom Model by Basila)
   * RD-119 (Soviet Rockets by RaiderNick)
   * RD-170 (RealEngines by Alcentar)
   * RD-180 (Bluedog Design Bureau by CobaltWolf)
