@@ -96,7 +96,7 @@ namespace ROEngines
             UpdateRCSModule();
             ROLStockInterop.UpdatePartHighlighting(part);
             //if (HighLogic.LoadedSceneIsEditor)
-                //GameEvents.onEditorShipModified.Fire(EditorLogic.fetch.ship);
+            //GameEvents.onEditorShipModified.Fire(EditorLogic.fetch.ship);
         }
 
         internal void ModelChangedHandlerWithSymmetry(bool pushNodes, bool symmetry)
@@ -253,19 +253,16 @@ namespace ROEngines
                 this.ROLactionWithSymmetry(m =>
                 {
                     m.rcsModelModule.modelSelected(newRCSModelDef.definition.name);
-                    ModelChangedHandler(true);
+                    m.ModelChangedHandler(true);
                 });
                 MonoUtilities.RefreshPartContextWindow(part);
             };
 
-            Fields[nameof(currentScale)].uiControlEditor.onFieldChanged =
-            Fields[nameof(currentScale)].uiControlEditor.onSymmetryFieldChanged = OnModelSelectionChanged;
+            Fields[nameof(currentScale)].uiControlEditor.onFieldChanged = OnModelSelectionChanged;
 
-            Fields[nameof(currentRCSModel)].uiControlEditor.onFieldChanged =
-            Fields[nameof(currentRCSModel)].uiControlEditor.onSymmetryFieldChanged = OnModelSelectionChanged;
+            Fields[nameof(currentRCSModel)].uiControlEditor.onFieldChanged = OnModelSelectionChanged;
 
-            Fields[nameof(currentBase)].uiControlEditor.onFieldChanged =
-            Fields[nameof(currentBase)].uiControlEditor.onSymmetryFieldChanged = OnModelSelectionChanged;
+            Fields[nameof(currentBase)].uiControlEditor.onFieldChanged = OnModelSelectionChanged;
 
             this.ROLupdateUIFloatEditControl(nameof(currentScale), minScale, maxScale, scaleLargeStep, scaleSmallStep, scaleSlideStep);
 
@@ -276,7 +273,7 @@ namespace ROEngines
             Fields[nameof(currentBaseTexture)].uiControlEditor.onFieldChanged = baseModule.textureSetSelected;
 
             //if (HighLogic.LoadedSceneIsEditor)
-                //GameEvents.onEditorShipModified.Add(OnEditorVesselModified);
+            //GameEvents.onEditorShipModified.Add(OnEditorVesselModified);
         }
 
         private void UpdateModelScale()
@@ -335,9 +332,13 @@ namespace ROEngines
 
         public void OnModelSelectionChanged(BaseField f, object o)
         {
-            if (f.name == Fields[nameof(currentRCSModel)].name) rcsModelModule.modelSelected(currentRCSModel);
-            else if (f.name == Fields[nameof(currentBase)].name) baseModule.modelSelected(currentBase);
-            ModelChangedHandler(true);
+            this.ROLactionWithSymmetry(m =>
+            {
+                if (f.name == m.Fields[nameof(currentRCSModel)].name) m.rcsModelModule.modelSelected(this.currentRCSModel);
+                else if (f.name == m.Fields[nameof(currentBase)].name) m.baseModule.modelSelected(this.currentBase);
+                else if (f.name == m.Fields[nameof(currentScale)].name) m.currentScale = this.currentScale;
+                m.ModelChangedHandler(true);
+            });
             MonoUtilities.RefreshPartContextWindow(part);
         }
 
