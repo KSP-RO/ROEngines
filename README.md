@@ -61,6 +61,7 @@ I understand that some of you may want these other versions of engines back, so 
   * E-1 (Bluedog Design Bureau by Zorg)
   * F-1 (Bluedog Design Bureau by CobaltWolf)
   * F-1B (Bluedog Design Bureau by CobaltWolf)
+  * G-1 (Astral Manufactures by Al2Me6)
   * Gamma-2 (CRE by Beale)
   * Gamma-8 (CRE by Beale)
   * Gamma-301 (CRE by Beale)
