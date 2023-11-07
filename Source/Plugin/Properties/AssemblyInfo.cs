@@ -35,10 +35,11 @@ using System.Runtime.InteropServices;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]    // Don't change for every release
 #if CIBUILD
-[assembly: AssemblyFileVersion("@MAJOR@.@MINOR@.@PATCH.@BUILD@")]
+[assembly: AssemblyFileVersion("@MAJOR@.@MINOR@.@PATCH@.@BUILD@")]
+[assembly: KSPAssembly("ROEngines", @MAJOR@, @MINOR@)]
 #else
-[assembly: AssemblyFileVersion("1.10.0.0")]
+[assembly: AssemblyFileVersion("2.0.0.0")]
+[assembly: KSPAssembly("ROEngines", 2, 0)]
 #endif
 
-[assembly: KSPAssembly("ROEngines", 1, 0)]
 //[assembly: KSPAssemblyDependency("ROLib", 1, 0)]  Uncomment at a later date when ROLib with KSPAssembly attribute has gotten a release or 2
