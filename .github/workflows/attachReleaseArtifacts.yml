@@ -54,7 +54,7 @@ jobs:
             -e "s/CIBUILD_disabled/CIBUILD/" \
             -e "s/@MAJOR@/$VMAJOR/" \
             -e "s/@MINOR@/$VMINOR/" \
-            -e "s/@PATCH/$VPATCH/" \
+            -e "s/@PATCH@/$VPATCH/" \
             -e "s/@BUILD@/$VBUILD/" \
             -i ${GITHUB_WORKSPACE}/Source/Plugin/Properties/AssemblyInfo.cs
 
