@@ -25,52 +25,6 @@ jobs:
           echo "Found branch ${releaseBranch}"
           echo "tagged_branch=${releaseBranch}" >> $GITHUB_ENV
 
-      - name: Download required assemblies
-        id: download-assemblies
-        shell: bash
-        env:
-          KSP_ZIP_PASSWORD: ${{ secrets.KSP_ZIP_PASSWORD }}
-        run: |
-          curl https://ksp-ro.s3-us-west-2.amazonaws.com/KSPAssemblies-1.12.zip --output /tmp/bins.zip
-          KSP_DLL_PATH="/opt/ksp/assembly"
-          echo "::set-output name=ksp-dll-path::${KSP_DLL_PATH}"
-          mkdir -p "${KSP_DLL_PATH}"
-          unzip -P "${KSP_ZIP_PASSWORD}" '/tmp/bins.zip' -d "${KSP_DLL_PATH}"
-          rm '/tmp/bins.zip'
-
-      - name: Build mod solution
-        env:
-          TAG_STRING: ${{ github.event.release.tag_name }}
-        run: |
-          VFULL="$(echo $TAG_STRING | sed -e s/v//)"
-          VMAJOR="$(echo $VFULL | cut -f 1 -d '.')"
-          VMINOR="$(echo $VFULL | cut -f 2 -d '.')"
-          VPATCH="$(echo $VFULL | cut -f 3 -d '.')"
-          VBUILD="$(echo $VFULL | cut -f 4 -d '.')"
-
-          echo "Version string: $TAG_STRING"
-          echo "Version is $VMAJOR dot $VMINOR dot $VPATCH dot $VBUILD"
-          sed \
-            -e "s/CIBUILD_disabled/CIBUILD/" \
-            -e "s/@MAJOR@/$VMAJOR/" \
-            -e "s/@MINOR@/$VMINOR/" \
-            -e "s/@PATCH@/$VPATCH/" \
-            -e "s/@BUILD@/$VBUILD/" \
-            -i ${GITHUB_WORKSPACE}/Source/Plugin/Properties/AssemblyInfo.cs
-
-          grep CIBUILD ${GITHUB_WORKSPACE}/Source/Plugin/Properties/AssemblyInfo.cs
-          grep AssemblyVersion ${GITHUB_WORKSPACE}/Source/Plugin/Properties/AssemblyInfo.cs
-          grep AssemblyFileVersion ${GITHUB_WORKSPACE}/Source/Plugin/Properties/AssemblyInfo.cs
-          
-          rm -f ${GITHUB_WORKSPACE}/GameData/ROEngines/Plugins/*.dll
-          msbuild /p:Configuration=Release /p:ReferencePath="${{ steps.download-assemblies.outputs.ksp-dll-path }}" ${GITHUB_WORKSPACE}/Source/Plugin/ROEngines.sln
-          cp -v ${GITHUB_WORKSPACE}/Source/Plugin/obj/Release/ROEngines.dll ${GITHUB_WORKSPACE}/GameData/ROEngines/Plugins/ROEngines.dll
-
-      - name: Remove excess DLLs
-        uses: KSP-RO/BuildTools/remove-excess-dlls@master
-        with:
-          path: ${GITHUB_WORKSPACE}/GameData/
-
       - name: Setup python
         uses: actions/setup-python@v2
         with:
