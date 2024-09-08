@@ -42,4 +42,4 @@ using System.Runtime.InteropServices;
 [assembly: KSPAssembly("ROEngines", 2, 0)]
 #endif
 
-//[assembly: KSPAssemblyDependency("ROLib", 1, 0)]  Uncomment at a later date when ROLib with KSPAssembly attribute has gotten a release or 2
+[assembly: KSPAssemblyDependency("ROLib", 2, 0)]
