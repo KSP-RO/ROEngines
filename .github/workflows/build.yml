@@ -16,7 +16,7 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   check-secret:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     outputs:
       has-password: ${{ steps.has-password.outputs.defined }}
     steps:
