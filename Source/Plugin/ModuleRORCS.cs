@@ -328,7 +328,9 @@ namespace ROEngines
             }
         }
 
-        private void UpdateDragCubes() => ROLModInterop.OnPartGeometryUpdate(part, true);
+        private void UpdateDragCubes() => ROLModInterop.OnPartGeometryUpdate(part, ShapeKey);
+
+        private string ShapeKey => $"RORCS|{currentType}|{currentRCSModel}|{currentBase}|{currentLayout}|{currentScale}";
 
         public void OnModelSelectionChanged(BaseField f, object o)
         {
