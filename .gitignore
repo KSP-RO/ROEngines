@@ -348,3 +348,5 @@ MigrationBackup/
 
 # Blender backup files
 *.blend1
+
+GameData/ROEngines/Plugins/*.dll
