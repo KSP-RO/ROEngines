@@ -144,7 +144,11 @@ namespace ROEngines
 
         //private void OnEditorVesselModified(ShipConstruct ship) => UpdateAvailableVariants();
 
-        public void OnMECDynamicPatchReset() => UpdateRCSModule();
+        /// <summary>
+        /// Sent by RealFuels' ModuleEngineConfigs whenever it re-runs SetConfiguration (config switch, tech level
+        /// change, symmetry propagation etc), which throws away the dynamic patch we applied in UpdateRCSModule().
+        /// </summary>
+        public void OnMPECDynamicPatchReset() => UpdateRCSModule();
 
         public string[] getSectionNames() => new string[] { "RCS Model", "Base" };
 
