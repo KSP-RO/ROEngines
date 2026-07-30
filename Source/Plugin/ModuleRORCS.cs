@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using System.Reflection;
 using UnityEngine;
 using KSPShaderTools;
@@ -65,6 +66,7 @@ namespace ROEngines
 
         private static MethodInfo MEC_ApplyDynamicPatch;
         private static MethodInfo MEC_GetNonDynamicPatchedConfiguration;
+        private static MethodInfo RCS_FindThrusters;
         private static bool reflectionInitialized = false;
 
         private PartModule mec;
@@ -82,6 +84,13 @@ namespace ROEngines
             return set;
         }
 
+        /// <summary>
+        /// Find the variant set that actually holds the given model option. Unlike the string overload this
+        /// never creates a new (empty) set, so it is safe to call with a model name that is not a variant name.
+        /// </summary>
+        private ModelDefinitionVariantSet GetVariantSet(ModelDefinitionLayoutOptions def) =>
+            variantSets.Values.FirstOrDefault(vs => vs.definitions.Contains(def));
+
         internal ModelDefinitionLayoutOptions[] rcsModelDefs;
         internal ModelDefinitionLayoutOptions[] baseDefs;
 
@@ -95,8 +104,12 @@ namespace ROEngines
             rcsModelModule.RenameRCSThrustTransforms(rcsThrustTransformName);
             UpdateRCSModule();
             ROLStockInterop.UpdatePartHighlighting(part);
-            //if (HighLogic.LoadedSceneIsEditor)
-            //GameEvents.onEditorShipModified.Fire(EditorLogic.fetch.ship);
+
+            // Mass/cost/thrust just changed; the UI controls all set suppressEditorShipModified so KSP will not
+            // raise the event for us. Without this the editor mass, cost and dV readouts stay stale until some
+            // unrelated edit happens to fire it. ROLStockInterop debounces this to a single event per frame.
+            if (HighLogic.LoadedSceneIsEditor)
+                ROLStockInterop.FireEditorUpdate();
         }
 
         internal void ModelChangedHandlerWithSymmetry(bool pushNodes, bool symmetry)
@@ -129,6 +142,7 @@ namespace ROEngines
                 var mecTy = Type.GetType("RealFuels.ModuleEngineConfigs, RealFuels", true);
                 MEC_ApplyDynamicPatch = mecTy.GetMethod("ApplyDynamicPatch");
                 MEC_GetNonDynamicPatchedConfiguration = mecTy.GetMethod("GetNonDynamicPatchedConfiguration");
+                RCS_FindThrusters = typeof(ModuleRCS).GetMethod("FindThrusters", BindingFlags.Instance | BindingFlags.NonPublic);
 
                 reflectionInitialized = true;
             }
@@ -213,6 +227,16 @@ namespace ROEngines
             rcsModelDefs = rcsModelDefList.ToArray();
             baseDefs = ROLModelData.getModelDefinitions(node.GetNodes("RCSBASE"));
 
+            // A craft saved against an older config can carry a currentType that no longer exists. Left alone,
+            // getValidOptions() below would hand back an empty set and every selection update after that misbehaves.
+            if (variantSets.Count > 0 && !variantSets.ContainsKey(currentType))
+            {
+                string fallback = variantSets.FirstOrDefault(kvp => kvp.Value.definitions.Any(d => d.definition.name == currentRCSModel)).Key
+                                  ?? variantSets.Keys.First();
+                UnityEngine.Debug.LogWarning($"[ModuleRORCS] Unknown type '{currentType}' on {part.name}, falling back to '{fallback}'");
+                currentType = fallback;
+            }
+
             rcsModelTransform = rcsModelRotatedRoot.FindOrCreate("ModuleRORCS-RCSModel");
             rcsModelModule = new ROLModelModule<ModuleRORCS>(part, this, rcsModelTransform, ModelOrientation.CENTRAL, nameof(currentRCSModel), nameof(currentLayout), nameof(currentRCSModelTexture), nameof(rcsModelModulePersistentData))
             {
@@ -250,9 +274,18 @@ namespace ROEngines
 
             Fields[nameof(currentType)].uiControlEditor.onFieldChanged = (a, b) =>
             {
-                ModelDefinitionVariantSet prevMdvs = GetVariantSet(rcsModelModule.definition.name);
-                int previousIndex = prevMdvs.IndexOf(rcsModelModule.layoutOptions);
+                // Look the previous set up by the model that is actually selected. Passing the model name to the
+                // string overload would silently create an empty set instead, which always reset the selection to
+                // the first model of the new type and left junk entries in variantSets.
+                ModelDefinitionVariantSet prevMdvs = GetVariantSet(rcsModelModule.layoutOptions);
+                int previousIndex = prevMdvs?.IndexOf(rcsModelModule.layoutOptions) ?? 0;
                 ModelDefinitionVariantSet mdvs = GetVariantSet(currentType);
+                if (mdvs.definitions.Length == 0)
+                {
+                    UnityEngine.Debug.LogError($"[ModuleRORCS] No models defined for type {currentType} on {part.name}");
+                    return;
+                }
+
                 ModelDefinitionLayoutOptions newRCSModelDef = mdvs[previousIndex];
                 this.ROLactionWithSymmetry(m =>
                 {
@@ -294,9 +327,11 @@ namespace ROEngines
         private void UpdateRCSModule()
         {
             if (!reflectionInitialized) return;
+            // Probably intended to catch cases where the part is still starting up: MEC runs SetConfiguration from its own
+            // OnStart, before OnStartFinished has built our models. OnStartFinished applies the patch afterwards.
             if (mec == null || rcsfx == null || rcsModelModule == null) return;
 
-            typeof(ModuleRCS).GetMethod("FindThrusters", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(rcsfx, null);
+            RCS_FindThrusters.Invoke(rcsfx, null);
 
             // Scaling factors based on RealismOverhaul/RO_SuggestedMods/RO_RCS_Config.cfg
             // Note: It is assumed that a scale of 1 corresponds to a 1x RCS block
@@ -309,8 +344,20 @@ namespace ROEngines
             var costMult = Mathf.Sqrt(thrustMult) * numNozzles;
 
             var baseConfig = (ConfigNode)MEC_GetNonDynamicPatchedConfiguration.Invoke(mec, null);
+            if (baseConfig == null)
+            {
+                UnityEngine.Debug.LogError($"[ModuleRORCS] {part.name} has no active RealFuels config, cannot scale RCS stats");
+                return;
+            }
+
             var patch = new ConfigNode();
-            patch.AddValue("thrusterPower", thrustMult * baseConfig.GetFloatValue("thrusterPower"));
+            // Only patch thrusterPower when the config actually has it - GetFloatValue() would otherwise hand back
+            // 0 and leave the thrusters unable to produce any thrust at all.
+            if (baseConfig.HasValue("thrusterPower"))
+                patch.AddValue("thrusterPower", thrustMult * baseConfig.GetFloatValue("thrusterPower"));
+            else
+                UnityEngine.Debug.LogError($"[ModuleRORCS] RealFuels config '{baseConfig.GetValue("name")}' on {part.name} has no thrusterPower, cannot scale thrust");
+
             patch.AddValue("massMult", massMult * baseConfig.GetFloatValue("massMult", 1f));
             patch.AddValue("cost", costMult * baseConfig.GetFloatValue("cost", part.partInfo.cost));
             MEC_ApplyDynamicPatch.Invoke(mec, new object[] { patch });
