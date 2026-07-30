@@ -39,27 +39,22 @@
     <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\..\..\..\KSP DLL\1.8.1\Assembly-CSharp.dll</HintPath>
+    <Reference Include="Assembly-CSharp">
       <Private>False</Private>
     </Reference>
     <Reference Include="ROLib">
-      <HintPath>..\..\..\ROLibrary\GameData\ROLib\Plugins\ROLib.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
-    <Reference Include="TexturesUnlimited, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\..\..\..\KSP DLL\1.8.1\TexturesUnlimited.dll</HintPath>
+    <Reference Include="TexturesUnlimited">
       <Private>False</Private>
     </Reference>
-    <Reference Include="UnityEngine, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\..\..\..\KSP DLL\1.8.1\UnityEngine.dll</HintPath>
+    <Reference Include="UnityEngine">
       <Private>False</Private>
     </Reference>
-    <Reference Include="UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\..\..\..\KSP DLL\1.8.1\UnityEngine.CoreModule.dll</HintPath>
+    <Reference Include="UnityEngine.CoreModule">
       <Private>False</Private>
     </Reference>
   </ItemGroup>
